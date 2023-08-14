@@ -2,34 +2,58 @@ from utils_colors import Colors
 
 class Matrix:
     def __init__(self, *rows):
-        self.rows = [list(row) for row in rows]
-        self.check_validity()
+        try:
+            self.rows = [list(row) for row in rows]
+            self.check_validity()
+            self.columns = self.get_columns()
+        except:
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}{[*rows]} is not a valid matrix.")
 
     def check_validity(self):
-        # check if args same len
-        # check if not empty
-        pass
-    
-    def __str__(self):
-        s = f"{Colors.PINK}MATRIX:{Colors.RES}\n"
         if not len(self.rows):
-            s += "[]\n"
-            return s
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}{self.rows} is not a valid matrix.")
+        prev_row_len = len(self.rows[0])
         for row in self.rows:
-            if not len(row):
-                s += "[]\n"
-                return s
+            if prev_row_len == 0 or len(row) != prev_row_len:
+                raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}{self.rows} is not a valid matrix.")
+            prev_row_len = len(row)
+
+    def get_columns(self):
+        nb_rows, nb_cols = self.shape()
+        all_columns = []
+        for col_index in range(nb_cols):
+            new_column = []
+            for row_index in range(nb_rows):
+                new_column.append(self.rows[row_index][col_index])
+            all_columns.append(new_column)
+        # all_columns = [[self.rows[row_index][col_index] for row_index in range(nb_rows)] for col_index in range(nb_cols)]
+        return all_columns
+
+    def __str__(self):
+        s = f"{Colors.MATRIX}MATRIX:{Colors.RES}\n"
         max_width = max([max(len(str(coord)) for coord in row) for row in self.rows])
-        for row in self.rows:
+        for i, row in enumerate(self.rows):
             s += "[ "
-            for i, coord in enumerate(row):
+            for j, coord in enumerate(row):
                 s += f"{coord:<{max_width}}"
-                if i != len(row) - 1:
+                if j != len(row) - 1:
                     s += ", "
-            s += " ]\n"
+            s += " ]"
+            if i != len(self.rows) - 1:
+                s += "\n"
         return s
+    
+    def summary(self):
+        print(self)
+        print(f"{Colors.MATRIX}shape: {Colors.RES}{self.shape()}")
+        print(f"{Colors.MATRIX}square: {Colors.RES}{self.is_square()}")
+        print()
 
     def shape(self):
         x = len(self.rows)
         y = len(self.rows[0])
         return (x, y)
+
+    def is_square(self):
+        x, y = self.shape()
+        return x == y

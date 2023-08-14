@@ -1,25 +1,33 @@
 from utils_colors import Colors
-from class_matrix import Matrix
 
 class Vector:
     def __init__ (self, *coordinates):
         self.coordinates = list(coordinates)
+        self.check_validity()
     
+    def check_validity(self):
+        if not len(self.coordinates):
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}{self.coordinates} is not a valid vector.")
+
     def __str__(self):
-        s = f"{Colors.BLUE}VECTOR:{Colors.RES}\n"
+        s = f"{Colors.VECTOR}VECTOR:{Colors.RES}\n"
         if not len(self.coordinates):
             s += "[]\n"
             return s
         max_width = max(len(str(coord)) for coord in self.coordinates)
-        for coord in self.coordinates:
-            s += f"[ {coord:<{max_width}} ]\n"
+        for i, coord in enumerate(self.coordinates):
+            s += f"[ {str(coord):<{max_width}} ]"
+            if i != len(self.coordinates) - 1:
+                s += "\n"
         return s
     
+    def summary(self):
+        print(self)
+        print(f"{Colors.VECTOR}size: {Colors.RES}{self.size()}")
+        print()
+
     def size(self):
         return len(self.coordinates)
-
-    def to_matrix(self):
-        return Matrix(self.coordinates)
 
     def add(self, v: 'Vector'):
         if len(self.coordinates) != len(v.coordinates):

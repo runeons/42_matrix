@@ -40,5 +40,7 @@ class Colors:
 
     ERROR       = B_RED
     WARNING     = B_ORANGE
+    VECTOR      = BLUE
+    MATRIX      = PINK
 
     RES         = "\033[0m"
