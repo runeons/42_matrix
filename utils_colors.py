@@ -41,4 +41,4 @@ class Colors:
     ERROR       = B_RED
     WARNING     = B_ORANGE
 
-    END         = "\033[0m"
+    RES         = "\033[0m"
