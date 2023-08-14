@@ -30,7 +30,18 @@ class Vector:
         return len(self.coordinates)
 
     def add(self, v: 'Vector'):
-        if len(self.coordinates) != len(v.coordinates):
-            raise ValueError("Vector addition can only be operated on vectors with the same dimension.")
-        print(v)
+        if self.size() != v.size():
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Cannot add two vectors of different sizes.")
+        res = [ i + j for i, j in zip(self.coordinates, v.coordinates) ]
+        return Vector(*res)
+
+    def sub(self, v: 'Vector'):
+        if self.size() != v.size():
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Cannot add two vectors of different sizes.")
+        res = [ i - j for i, j in zip(self.coordinates, v.coordinates) ]
+        return Vector(*res)
+
+    def scl(self, scalar):
+        res = [ i * scalar for i in self.coordinates]
+        return Vector(*res)
 

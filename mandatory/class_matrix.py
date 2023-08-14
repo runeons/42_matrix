@@ -57,3 +57,21 @@ class Matrix:
     def is_square(self):
         x, y = self.shape()
         return x == y
+    
+    # def add(self, m: 'Matrix'):
+    #     if self.shape() != m.shape():
+    #         raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Cannot add two matrices of different sizes.")
+    #     res = [ i + j for i, j in zip(self.rows, m.rows) ]
+    #     return Matrix(*res)
+
+    # def sub(self, m: 'Matrix'):
+    #     return m
+    #     if self.shape() != m.shape():
+    #         raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Cannot add two matrices of different sizes.")
+    #     res = [ i - j for i, j in zip(self.rows, m.rows) ]
+    #     return Matrix(*res)
+
+    # def scl(self, scalar):
+    #     return self
+    #     res = [ i * scalar for i in self.rows]
+    #     return Matrix(*res)
