@@ -34,5 +34,5 @@ def linear_combination(vectors, coefs):
             res_coords[i] += v.coordinates[i] * coef
     return Vector(*res_coords)
 
-def linear_interpolation(x, y, t):
+def lerp(x, y, t):
     return x * (1 - t) + (y * t)

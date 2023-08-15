@@ -82,3 +82,54 @@ def check_time_complexity_vec_lin_comb(f):
             print(f"{Colors.BLUE}Size:{Colors.RES} {n}{Colors.BLUE}, Execution time: {Colors.RES}{curr_time}{Colors.BLUE}, Ratio: {Colors.RES}{ratio:.2f}")
         else:
             print(f"{Colors.BLUE}Size:{Colors.RES} {n}{Colors.BLUE}, Execution time: {Colors.RES}{curr_time}{Colors.BLUE}, Ratio: {Colors.RES}-")
+
+def check_time_complexity_lerp_vec(f):
+    if COMPLEXITY == False:
+        return
+    print_title("LINEAR INTERPOLATION VECTOR complexity")
+    res = []
+    for i in range(MAX_NB_DIGITS):
+        v1 = vector_from_size(10 ** i)
+        v2 = vector_from_size(10 ** i)
+        t = random.random()
+        start_time = time.time_ns()
+        f(v1, v2, t)
+        end_time = time.time_ns()
+        execution_time = end_time - start_time
+        res.append((10 ** i, execution_time))
+    for i in range(0, len(res)):
+        _, prev_time = res[i - 1]
+        n, curr_time = res[i]
+        if prev_time:
+            ratio = curr_time / prev_time
+            print(f"{Colors.BLUE}Size:{Colors.RES} {n}{Colors.BLUE}, Execution time: {Colors.RES}{curr_time}{Colors.BLUE}, Ratio: {Colors.RES}{ratio:.2f}")
+        else:
+            print(f"{Colors.BLUE}Size:{Colors.RES} {n}{Colors.BLUE}, Execution time: {Colors.RES}{curr_time}{Colors.BLUE}, Ratio: {Colors.RES}-")
+
+def check_time_complexity_lerp_mat(f):
+    if COMPLEXITY == False:
+        return
+    print_title("LINEAR INTERPOLATION MATRIX complexity")
+    res = []
+    x = y = 1
+    for i in range(MAX_NB_DIGITS):
+        if (i % 2):
+            x = x * 10
+        elif (i != 0):
+            y = y * 10
+        m1 = matrix_from_shape(x, y)
+        m2 = matrix_from_shape(x, y)
+        t = random.random()
+        start_time = time.time_ns()
+        f(m1, m2, t)
+        end_time = time.time_ns()
+        execution_time = end_time - start_time
+        res.append((10 ** i, execution_time))
+    for i in range(0, len(res)):
+        _, prev_time = res[i - 1]
+        n, curr_time = res[i]
+        if prev_time:
+            ratio = curr_time / prev_time
+            print(f"{Colors.BLUE}Size:{Colors.RES} {n}{Colors.BLUE}, Execution time: {Colors.RES}{curr_time}{Colors.BLUE}, Ratio: {Colors.RES}{ratio:.2f}")
+        else:
+            print(f"{Colors.BLUE}Size:{Colors.RES} {n}{Colors.BLUE}, Execution time: {Colors.RES}{curr_time}{Colors.BLUE}, Ratio: {Colors.RES}-")
