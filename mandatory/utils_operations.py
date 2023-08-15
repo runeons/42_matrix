@@ -37,3 +37,6 @@ def linear_combination(vectors, coefs):
 
 def lerp(x, y, t):
     return x * (1 - t) + (y * t)
+
+def angle_cos(u, v):
+    return u.dot(v) / (u.norm() * v.norm())
