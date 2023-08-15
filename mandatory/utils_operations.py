@@ -34,13 +34,5 @@ def linear_combination(vectors, coefs):
             res_coords[i] += v.coordinates[i] * coef
     return Vector(*res_coords)
 
-    # new_vectors = []
-    # for dim, dim_coef in zip(vectors, coefs):
-    #     new_vectors.append(dim.scl(dim_coef))
-    # comb = None
-    # for i, v in enumerate(new_vectors):
-    #     if (i == 0):
-    #         comb = v
-    #     else:
-    #         comb = comb.add(v)
-    # return comb
+def linear_interpolation(x, y, t):
+    return x * (1 - t) + (y * t)

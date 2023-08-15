@@ -49,6 +49,32 @@ class Matrix:
         print(f"{Colors.MATRIX}square: {Colors.RES}{self.is_square()}")
         print()
 
+    def __add__(self, m):
+        if isinstance(m, Matrix) and self.shape() == m.shape():
+            res = [[x1 + x2 for x1, x2 in zip(rows_self, rows_m)] for rows_self, rows_m in zip(self.rows, m.rows)]
+            return Matrix(*res)
+        else:
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Matrices should have the same dimension to use operator +.")
+
+    def __sub__(self, m):
+        if isinstance(m, Matrix) and self.shape() == m.shape():
+            res = [[x1 - x2 for x1, x2 in zip(rows_self, rows_m)] for rows_self, rows_m in zip(self.rows, m.rows)]
+            return Matrix(*res)
+        else:
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Matrices should have the same dimension to use operator -.")
+
+    def __mul__(self, scalar):
+        if (isinstance(scalar, int) or isinstance(scalar, float)):
+            return self.scl(scalar)
+        else:
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Matrix multiplication not implemented yet.")
+
+    def __div__(self, scalar):
+        if (isinstance(scalar, int) or isinstance(scalar, float)):
+            return self.scl(1 / scalar)
+        else:
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Matrix multiplication not implemented yet.")
+
     def shape(self):
         x = len(self.rows)
         y = len(self.rows[0])

@@ -26,6 +26,32 @@ class Vector:
         print(f"{Colors.VECTOR}size: {Colors.RES}{self.size()}")
         print()
 
+    def __add__(self, v):
+        if isinstance(v, Vector) and self.size() == v.size():
+            res = [x1 + x2 for x1, x2 in zip(self.coordinates, v.coordinates)]
+            return Vector(*res)
+        else:
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Vectors should have the same dimension to use operator +.")
+
+    def __sub__(self, v):
+        if isinstance(v, Vector) and self.size() == v.size():
+            res = [x1 - x2 for x1, x2 in zip(self.coordinates, v.coordinates)]
+            return Vector(*res)
+        else:
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Vectors should have the same dimension to use operator -.")
+
+    def __mul__(self, scalar):
+        if (isinstance(scalar, int) or isinstance(scalar, float)):
+            return self.scl(scalar)
+        else:
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Vector multiplication not implemented yet.")
+
+    def __div__(self, scalar):
+        if (isinstance(scalar, int) or isinstance(scalar, float)):
+            return self.scl(1 / scalar)
+        else:
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Vector multiplication not implemented yet.")
+
     def size(self):
         return len(self.coordinates)
 
@@ -42,6 +68,6 @@ class Vector:
         return Vector(*res)
 
     def scl(self, scalar):
-        res = [ i * scalar for i in self.coordinates]
+        res = [i * scalar for i in self.coordinates]
         return Vector(*res)
 
