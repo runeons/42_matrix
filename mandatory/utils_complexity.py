@@ -40,7 +40,7 @@ def check_time_complexity(f, args, extra_args=None, title="Complexity"):
     print_title(title)
     inputs = list(args)
     res = []
-    for n in inputs:
+    for i, n in enumerate(inputs):
         start_time = time.time_ns()
         if extra_args:
             f(n, extra_args)
@@ -48,36 +48,38 @@ def check_time_complexity(f, args, extra_args=None, title="Complexity"):
             f(n, n)
         end_time = time.time_ns()
         execution_time = end_time - start_time
-        res.append((n, execution_time))
+        res.append((10 ** i, execution_time))
     for i in range(0, len(res)):
         _, prev_time = res[i - 1]
         n, curr_time = res[i]
         if prev_time:
             ratio = curr_time / prev_time
-            print(f"{Colors.BLUE}Size:{Colors.RES} {10 ** i}{Colors.BLUE}, Execution time: {Colors.RES}{curr_time}{Colors.BLUE}, Ratio: {Colors.RES}{ratio:.2f}")
+            print(f"{Colors.BLUE}Size:{Colors.RES} {n}{Colors.BLUE}, Execution time: {Colors.RES}{curr_time}{Colors.BLUE}, Ratio: {Colors.RES}{ratio:.2f}")
         else:
-            print(f"{Colors.BLUE}Size:{Colors.RES} {10 ** i}{Colors.BLUE}, Execution time: {Colors.RES}{curr_time}{Colors.BLUE}, Ratio: {Colors.RES}-")
+            print(f"{Colors.BLUE}Size:{Colors.RES} {n}{Colors.BLUE}, Execution time: {Colors.RES}{curr_time}{Colors.BLUE}, Ratio: {Colors.RES}-")
 
-def check_time_complexity_lin_comb(f, args, coefs, title="Complexity"):
+def check_time_complexity_lin_comb(f):
     if COMPLEXITY == False:
         return
-    print_title(title)
-    inputs = args
+    print_title("LINEAR COMBINATION VECTOR complexity")
+    simple_v = vector_from_size(10)
     res = []
-    for v, coef in zip(inputs, coefs):
+    for i in range(MAX_NB_DIGITS):
+        coefs = []
         vectors = []
-        for i in range(v.size()):
-            vectors.append(v)           # create list of vectors to combinate, for each size (1, 10, 100...)
+        for _ in range(10 ** i):        # 1, 10, 100, 1000...
+            vectors.append(simple_v)    # il y aura donc 1, 10, 100, 1000... simple vectors a combiner
+            coefs.append(2)             # avec 1, 10, 100, 1000... coef de 2
         start_time = time.time_ns()
-        f(vectors, coef)
+        f(vectors, coefs)
         end_time = time.time_ns()
         execution_time = end_time - start_time
-        res.append((v.size(), execution_time))
+        res.append((10 ** i, execution_time))
     for i in range(0, len(res)):
         _, prev_time = res[i - 1]
-        i, curr_time = res[i]
+        n, curr_time = res[i]
         if prev_time:
-            ratio = curr_time / prev_time   # ^2 because v.size() AND len(vectors) increased each time
-            print(f"{Colors.BLUE}Size:{Colors.RES} {i}^2{Colors.BLUE}, Execution time: {Colors.RES}{curr_time}{Colors.BLUE}, Ratio: {Colors.RES}{ratio:.2f}")
+            ratio = curr_time / prev_time
+            print(f"{Colors.BLUE}Size:{Colors.RES} {n}{Colors.BLUE}, Execution time: {Colors.RES}{curr_time}{Colors.BLUE}, Ratio: {Colors.RES}{ratio:.2f}")
         else:
-            print(f"{Colors.BLUE}Size:{Colors.RES} {i}^2{Colors.BLUE}, Execution time: {Colors.RES}{curr_time}{Colors.BLUE}, Ratio: {Colors.RES}-")
+            print(f"{Colors.BLUE}Size:{Colors.RES} {n}{Colors.BLUE}, Execution time: {Colors.RES}{curr_time}{Colors.BLUE}, Ratio: {Colors.RES}-")

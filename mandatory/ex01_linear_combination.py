@@ -27,7 +27,7 @@ def main():
             vectors_complexity_tests = get_vector_inputs()
             coefs_complexity_tests = get_coefs_inputs()
             # matrices_complexity_tests = get_matrix_inputs()
-            check_time_complexity_lin_comb(linear_combination, vectors_complexity_tests, coefs=coefs_complexity_tests, title="LINEAR COMBINATION VECTOR complexity")
+            check_time_complexity_lin_comb(linear_combination)
             # check_time_complexity(linear_combination, matrices_complexity_tests, title="LINEAR COMBINATION MATRIX complexity")
 
     except ValueError as e:
