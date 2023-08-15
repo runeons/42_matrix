@@ -13,10 +13,9 @@ def print_title(title, color=Colors.YELLOW):
 #     tests_scalars = [10 ** i for i in range(max_nb_digits)]
 #     return tests_scalars
 
-def get_coefs_inputs(max_nb_digits=MAX_NB_DIGITS):
-    # tests_coefs = [vector_from_size(i + 1, fill_with=2) for i in range(max_nb_digits)]
-    tests_coefs = [[2 for _ in range(i + 1)] for i in range(max_nb_digits)]
-    return tests_coefs
+# def get_coefs_inputs(max_nb_digits=MAX_NB_DIGITS):
+#     tests_coefs = [[2 for _ in range(i + 1)] for i in range(max_nb_digits)]
+#     return tests_coefs
 
 def get_vector_inputs(max_nb_digits=MAX_NB_DIGITS):
     tests_lists = [[float(random.randrange(0, 10)) for _ in range(10 ** nb_elems)] for nb_elems in range(max_nb_digits)]
@@ -58,7 +57,7 @@ def check_time_complexity(f, args, extra_args=None, title="Complexity"):
         else:
             print(f"{Colors.BLUE}Size:{Colors.RES} {n}{Colors.BLUE}, Execution time: {Colors.RES}{curr_time}{Colors.BLUE}, Ratio: {Colors.RES}-")
 
-def check_time_complexity_lin_comb(f):
+def check_time_complexity_vec_lin_comb(f):
     if COMPLEXITY == False:
         return
     print_title("LINEAR COMBINATION VECTOR complexity")

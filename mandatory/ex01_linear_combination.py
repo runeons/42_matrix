@@ -2,7 +2,7 @@ from utils_colors import Colors
 from class_matrix import Matrix
 from class_vector import Vector
 from utils_operations import reshape, matrix_from_shape, linear_combination
-from utils_complexity import get_vector_inputs, check_time_complexity, get_matrix_inputs, check_time_complexity_lin_comb, get_coefs_inputs
+from utils_complexity import get_vector_inputs, check_time_complexity, get_matrix_inputs, check_time_complexity_vec_lin_comb
 from utils_constants import *
 
 def print_title(title, color=Colors.YELLOW):
@@ -24,10 +24,8 @@ def main():
         linear_combination(vectors_2, [10., -2.]).summary()
 
         if COMPLEXITY == True:
-            vectors_complexity_tests = get_vector_inputs()
-            coefs_complexity_tests = get_coefs_inputs()
             # matrices_complexity_tests = get_matrix_inputs()
-            check_time_complexity_lin_comb(linear_combination)
+            check_time_complexity_vec_lin_comb(linear_combination)
             # check_time_complexity(linear_combination, matrices_complexity_tests, title="LINEAR COMBINATION MATRIX complexity")
 
     except ValueError as e:
