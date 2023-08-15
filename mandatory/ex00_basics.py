@@ -2,7 +2,7 @@ from utils_colors import Colors
 from class_matrix import Matrix
 from class_vector import Vector
 from utils_operations import reshape
-from utils_complexity import get_vector_inputs, check_time_complexity, get_matrix_inputs
+from utils_complexity import check_time_complexity_vec_vec, check_time_complexity_mat_mat, check_time_complexity_vec_scal, check_time_complexity_mat_scal
 from utils_constants import *
 
 def print_title(title, color=Colors.YELLOW):
@@ -73,14 +73,18 @@ def main():
 
         if COMPLEXITY == True:
             print_title(">>>>>>>>>> BASIC OPERATIONS complexity <<<<<<<<<<")
-            vectors_complexity_tests = get_vector_inputs()
-            matrices_complexity_tests = get_matrix_inputs()
-            check_time_complexity(Vector.add, vectors_complexity_tests, title="ADD VECTOR complexity")
-            check_time_complexity(Vector.sub, vectors_complexity_tests, title="SUB VECTOR complexity")
-            check_time_complexity(Vector.scl, vectors_complexity_tests, extra_args=100, title="SCL VECTOR complexity")
-            check_time_complexity(Matrix.add, matrices_complexity_tests, title="ADD MATRIX complexity")
-            check_time_complexity(Matrix.sub, matrices_complexity_tests, title="SUB MATRIX complexity")
-            check_time_complexity(Matrix.scl, matrices_complexity_tests, extra_args=100, title="SCL MATRIX complexity")
+            print_title("ADD VECTOR complexity")
+            check_time_complexity_vec_vec(Vector.add)
+            print_title("SUB VECTOR complexity")
+            check_time_complexity_vec_vec(Vector.add)
+            print_title("SCL VECTOR complexity")
+            check_time_complexity_vec_scal(Vector.scl)
+            print_title("ADD MATRIX complexity")
+            check_time_complexity_mat_mat(Matrix.add)
+            print_title("SUB MATRIX complexity")
+            check_time_complexity_mat_mat(Matrix.sub)
+            print_title("SCL MATRIX complexity")
+            check_time_complexity_mat_scal(Matrix.scl)
 
     except ValueError as e:
         print(e)
