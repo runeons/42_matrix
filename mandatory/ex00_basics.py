@@ -3,8 +3,8 @@ from class_matrix import Matrix
 from class_vector import Vector
 from utils_operations import reshape
 
-def print_title(title):
-    print(f"{Colors.YELLOW}{title}{Colors.RES}")
+def print_title(title, color=Colors.YELLOW):
+    print(f"{color}{title}{Colors.RES}")
 
 def main():
     try:
@@ -17,7 +17,7 @@ def main():
             # Matrix([]),
             # Matrix([], []),
         ]
-        print_title("INSTANTIATE vector and matrix")
+        print_title(">>>>>>>>>> INSTANTIATE vector and matrix <<<<<<<<<<")
         tests_print = [
             Vector(0., 1., 2.),
             Vector(2.,),
@@ -33,7 +33,7 @@ def main():
             print("---------------------")
             t.summary()
 
-        print_title("RESHAPE vector and matrix")
+        print_title(">>>>>>>>>> RESHAPE vector and matrix <<<<<<<<<<")
         tests_reshape = [
             Matrix([1, 2, 3], [4, 5, 6]),
             Vector(2., 4.),
@@ -43,23 +43,31 @@ def main():
             t.summary()
             reshape(t).summary()
 
+        print_title(">>>>>>>>>> OPERATIONS between vectors <<<<<<<<<<")
+        print_title("tests vectors", Colors.GREEN)
+        v1 = Vector(2., 3.)
+        v2 = Vector(5., 7.)
+        v1.summary()
+        v2.summary()
         print_title("ADD two vectors")
-        Vector(2., 3.).add(Vector(5., 7.)).summary()
-
+        v1.add(v2).summary()
         print_title("SUB two vectors")
-        Vector(2., 3.).sub(Vector(5., 7.)).summary()
-
+        v1.sub(v2).summary()
         print_title("SCALE vector")
-        Vector(2., 3.).scl(2.).summary()
+        v1.scl(2.).summary()
 
-        # print_title("ADD two matrices")
-        # Matrix([1., 2.], [3., 4.]).add(Matrix([7., 4.], [-2., 2])).summary()
-
-        # print_title("SUB two matrices")
-        # Matrix([1., 2.], [3., 4.]).sub(Matrix([7., 4.], [-2., 2])).summary()
-
-        # print_title("SCALE matrix")
-        # Matrix([1., 2.], [3., 4.]).scl(2.).summary()
+        print_title(">>>>>>>>>> OPERATIONS between matrices <<<<<<<<<<")
+        print_title("tests matrices", Colors.GREEN)
+        m1 = Matrix([1., 2.], [3., 4.])
+        m2 = Matrix([7., 4.], [-2., 2])
+        m1.summary()
+        m2.summary()
+        print_title("ADD two matrices")
+        m1.add(m2).summary()
+        print_title("SUB two matrices")
+        m1.sub(m2).summary()
+        print_title("SCALE matrix")
+        m1.scl(2.).summary()
 
     except ValueError as e:
         print(e)
