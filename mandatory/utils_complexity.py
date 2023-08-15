@@ -2,10 +2,8 @@ import time
 import random
 from utils_colors import Colors
 from utils_operations import matrix_from_shape, vector_from_size
-from utils_constants import *
-
-def print_title(title, color=Colors.YELLOW):
-    print(f"{color}{title}{Colors.RES}")
+from utils_constants import COMPLEXITY, MAX_NB_DIGITS, SIMPLE_VECTOR_SIZE, SIMPLE_SCALAR
+from utils_display import print_title
 
 def print_complexity_summary(res):
     for i in range(0, len(res)):

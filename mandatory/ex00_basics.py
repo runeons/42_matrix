@@ -1,12 +1,10 @@
 from utils_colors import Colors
 from class_matrix import Matrix
 from class_vector import Vector
+from utils_display import print_title
 from utils_operations import reshape
 from utils_complexity import check_time_complexity_vec_vec, check_time_complexity_mat_mat, check_time_complexity_vec_scal, check_time_complexity_mat_scal
-from utils_constants import *
-
-def print_title(title, color=Colors.YELLOW):
-    print(f"{color}{title}{Colors.RES}")
+from utils_constants import COMPLEXITY
 
 def main():
     try:

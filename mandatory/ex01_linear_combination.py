@@ -1,11 +1,8 @@
-from utils_colors import Colors
 from class_vector import Vector
+from utils_display import print_title
 from utils_operations import linear_combination
 from utils_complexity import check_time_complexity_vec_nums
-from utils_constants import *
-
-def print_title(title, color=Colors.YELLOW):
-    print(f"{color}{title}{Colors.RES}")
+from utils_constants import COMPLEXITY
 
 def main():
     try:
@@ -18,7 +15,7 @@ def main():
             Vector(1., 2., 3.),
             Vector(0., 10., -100.),
         ]
-        print_title(">>>>>>>>>> VECTOR linear combination <<<<<<<<<<", Colors.GREEN)
+        print_title(">>>>>>>>>> VECTOR linear combination <<<<<<<<<<")
         linear_combination(vectors_1, [10., -2., 0.5]).summary()
         linear_combination(vectors_2, [10., -2.]).summary()
 
