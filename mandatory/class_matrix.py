@@ -71,5 +71,5 @@ class Matrix:
         return Matrix(*res)
 
     def scl(self, scalar):
-        res = [[c * scalar for c in row] for row in self.rows]
+        res = [[c * float(scalar) for c in row] for row in self.rows]
         return Matrix(*res)

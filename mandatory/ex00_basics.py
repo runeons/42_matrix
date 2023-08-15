@@ -1,8 +1,9 @@
 from utils_colors import Colors
 from class_matrix import Matrix
 from class_vector import Vector
-from utils_operations import reshape
-from utils_complexity import get_vector_inputs, check_time_complexity
+from utils_operations import reshape, matrix_from_shape
+from utils_complexity import get_vector_inputs, check_time_complexity, get_matrix_inputs
+from utils_constants import *
 
 def print_title(title, color=Colors.YELLOW):
     print(f"{color}{title}{Colors.RES}")
@@ -70,14 +71,18 @@ def main():
         print_title("SCALE matrix")
         m1.scl(2.).summary()
 
-        vectors_complexity_tests = get_vector_inputs()
-        # scalars_complexity_tests = get_scalar_inputs()
-        print_title("ADD VECTOR complexity")
-        check_time_complexity(Vector.add, vectors_complexity_tests)
-        print_title("SUB VECTOR complexity")
-        check_time_complexity(Vector.sub, vectors_complexity_tests)
-        print_title("SCL VECTOR complexity")
-        check_time_complexity(Vector.scl, vectors_complexity_tests, 100)
+        if COMPLEXITY == True:
+            print_title(">>>>>>>>>> BASIC OPERATIONS complexity <<<<<<<<<<")
+            vectors_complexity_tests = get_vector_inputs()
+            matrices_complexity_tests = get_matrix_inputs()
+            # scalars_complexity_tests = get_scalar_inputs()
+            check_time_complexity(Vector.add, vectors_complexity_tests, title="ADD VECTOR complexity")
+            check_time_complexity(Vector.sub, vectors_complexity_tests, title="SUB VECTOR complexity")
+            check_time_complexity(Vector.scl, vectors_complexity_tests, extra_args=100, title="SCL VECTOR complexity")
+            check_time_complexity(Matrix.add, matrices_complexity_tests, title="ADD MATRIX complexity")
+            check_time_complexity(Matrix.sub, matrices_complexity_tests, title="SUB MATRIX complexity")
+            check_time_complexity(Matrix.scl, matrices_complexity_tests, extra_args=100, title="SCL MATRIX complexity")
+
 
     except ValueError as e:
         print(e)
