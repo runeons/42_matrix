@@ -2,6 +2,7 @@ from utils_colors import Colors
 from class_matrix import Matrix
 from class_vector import Vector
 from utils_operations import reshape
+from utils_complexity import get_vector_inputs, check_time_complexity
 
 def print_title(title, color=Colors.YELLOW):
     print(f"{color}{title}{Colors.RES}")
@@ -68,6 +69,15 @@ def main():
         m1.sub(m2).summary()
         print_title("SCALE matrix")
         m1.scl(2.).summary()
+
+        vectors_complexity_tests = get_vector_inputs()
+        # scalars_complexity_tests = get_scalar_inputs()
+        print_title("ADD VECTOR complexity")
+        check_time_complexity(Vector.add, vectors_complexity_tests)
+        print_title("SUB VECTOR complexity")
+        check_time_complexity(Vector.sub, vectors_complexity_tests)
+        print_title("SCL VECTOR complexity")
+        check_time_complexity(Vector.scl, vectors_complexity_tests, 100)
 
     except ValueError as e:
         print(e)
