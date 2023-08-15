@@ -71,18 +71,12 @@ def main():
 
         if COMPLEXITY == True:
             print_title(">>>>>>>>>> BASIC OPERATIONS complexity <<<<<<<<<<")
-            print_title("ADD VECTOR complexity")
-            check_time_complexity_vec_vec(Vector.add)
-            print_title("SUB VECTOR complexity")
-            check_time_complexity_vec_vec(Vector.add)
-            print_title("SCL VECTOR complexity")
-            check_time_complexity_vec_scal(Vector.scl)
-            print_title("ADD MATRIX complexity")
-            check_time_complexity_mat_mat(Matrix.add)
-            print_title("SUB MATRIX complexity")
-            check_time_complexity_mat_mat(Matrix.sub)
-            print_title("SCL MATRIX complexity")
-            check_time_complexity_mat_scal(Matrix.scl)
+            check_time_complexity_vec_vec(Vector.add, "ADD VECTOR")
+            check_time_complexity_vec_vec(Vector.add, "SUB VECTOR")
+            check_time_complexity_vec_scal(Vector.scl, "SCL VECTOR")
+            check_time_complexity_mat_mat(Matrix.add, "ADD MATRIX")
+            check_time_complexity_mat_mat(Matrix.sub, "SUB MATRIX")
+            check_time_complexity_mat_scal(Matrix.scl, "SCL MATRIX")
 
     except ValueError as e:
         print(e)

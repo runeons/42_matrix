@@ -44,9 +44,10 @@ def create_input_many_numbers(complex_nb_digits):
         numbers.append(SIMPLE_SCALAR)
     return numbers
 
-def check_time_complexity_vec_vec(f):
+def check_time_complexity_vec_vec(f, title):
     if COMPLEXITY == False:
         return
+    print_title(title + " complexity")
     res = []
     for i in range(MAX_NB_DIGITS):
         v1 = create_input_long_vector(i)
@@ -58,9 +59,10 @@ def check_time_complexity_vec_vec(f):
         res.append((10 ** i, execution_time))
     print_complexity_summary(res)
     
-def check_time_complexity_mat_mat(f):
+def check_time_complexity_mat_mat(f, title):
     if COMPLEXITY == False:
         return
+    print_title(title + " complexity")
     res = []
     for i in range(MAX_NB_DIGITS):
         m1 = create_input_long_matrix(i)
@@ -72,9 +74,10 @@ def check_time_complexity_mat_mat(f):
         res.append((10 ** i, execution_time))
     print_complexity_summary(res)
 
-def check_time_complexity_vec_scal(f):
+def check_time_complexity_vec_scal(f, title):
     if COMPLEXITY == False:
         return
+    print_title(title + " complexity")
     res = []
     for i in range(MAX_NB_DIGITS):
         v1 = create_input_long_vector(i)
@@ -85,9 +88,10 @@ def check_time_complexity_vec_scal(f):
         res.append((10 ** i, execution_time))
     print_complexity_summary(res)
 
-def check_time_complexity_mat_scal(f):
+def check_time_complexity_mat_scal(f, title):
     if COMPLEXITY == False:
         return
+    print_title(title + " complexity")
     res = []
     for i in range(MAX_NB_DIGITS):
         m1 = create_input_long_matrix(i)
@@ -98,10 +102,10 @@ def check_time_complexity_mat_scal(f):
         res.append((10 ** i, execution_time))
     print_complexity_summary(res)
 
-def check_time_complexity_vec_nums(f):
+def check_time_complexity_vec_nums(f, title):
     if COMPLEXITY == False:
         return
-    print_title("LINEAR COMBINATION VECTOR complexity")
+    print_title(title + " complexity")
     res = []
     for i in range(MAX_NB_DIGITS):
         coefs = create_input_many_numbers(i)
@@ -113,10 +117,10 @@ def check_time_complexity_vec_nums(f):
         res.append((10 ** i, execution_time))
     print_complexity_summary(res)
 
-def check_time_complexity_vec_vec_float(f):
+def check_time_complexity_vec_vec_float(f, title):
     if COMPLEXITY == False:
         return
-    print_title("LINEAR INTERPOLATION VECTOR complexity")
+    print_title(title + " complexity")
     res = []
     for i in range(MAX_NB_DIGITS):
         v1 = create_input_long_vector(i)
@@ -129,10 +133,10 @@ def check_time_complexity_vec_vec_float(f):
         res.append((10 ** i, execution_time))
     print_complexity_summary(res)
 
-def check_time_complexity_mat_mat_float(f):
+def check_time_complexity_mat_mat_float(f, title):
     if COMPLEXITY == False:
         return
-    print_title("LINEAR INTERPOLATION MATRIX complexity")
+    print_title(title + " complexity")
     res = []
     for i in range(MAX_NB_DIGITS):
         m1 = create_input_long_matrix(i)

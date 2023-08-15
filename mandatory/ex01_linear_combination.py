@@ -20,7 +20,7 @@ def main():
         linear_combination(vectors_2, [10., -2.]).summary()
 
         if COMPLEXITY == True:
-            check_time_complexity_vec_nums(linear_combination)
+            check_time_complexity_vec_nums(linear_combination, "LINEAR COMBINATION VECTOR")
 
     except ValueError as e:
         print(e)
