@@ -40,3 +40,10 @@ def lerp(x, y, t):
 
 def angle_cos(u, v):
     return u.dot(v) / (u.norm() * v.norm())
+
+def cross_product(u, v):
+    res_coords = [0, 0, 0]
+    gamma = [(1, 2), (0, 2), (0, 1)]
+    for i in range(3):
+        res_coords[i] = (u.coordinates[gamma[i][0]] * v.coordinates[gamma[i][1]] - u.coordinates[gamma[i][1]] * v.coordinates[gamma[i][0]]) * (-1) ** i
+    return Vector(*res_coords)
