@@ -75,14 +75,12 @@ def main():
             print_title(">>>>>>>>>> BASIC OPERATIONS complexity <<<<<<<<<<")
             vectors_complexity_tests = get_vector_inputs()
             matrices_complexity_tests = get_matrix_inputs()
-            # scalars_complexity_tests = get_scalar_inputs()
             check_time_complexity(Vector.add, vectors_complexity_tests, title="ADD VECTOR complexity")
             check_time_complexity(Vector.sub, vectors_complexity_tests, title="SUB VECTOR complexity")
             check_time_complexity(Vector.scl, vectors_complexity_tests, extra_args=100, title="SCL VECTOR complexity")
             check_time_complexity(Matrix.add, matrices_complexity_tests, title="ADD MATRIX complexity")
             check_time_complexity(Matrix.sub, matrices_complexity_tests, title="SUB MATRIX complexity")
             check_time_complexity(Matrix.scl, matrices_complexity_tests, extra_args=100, title="SCL MATRIX complexity")
-
 
     except ValueError as e:
         print(e)
