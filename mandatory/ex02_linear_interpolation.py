@@ -2,7 +2,7 @@ from utils_colors import Colors
 from class_vector import Vector
 from class_matrix import Matrix
 from utils_operations import lerp
-from utils_complexity import check_time_complexity_lerp_vec, check_time_complexity_lerp_mat
+from utils_complexity import check_time_complexity_vec_vec_float, check_time_complexity_mat_mat_float
 from utils_constants import *
 
 def print_title(title, color=Colors.YELLOW):
@@ -25,8 +25,8 @@ def main():
         lerp(Matrix([2., 1.], [3., 4.]), Matrix([20., 10.], [30., 40.]), 0.5).summary()
 
         if COMPLEXITY == True:
-            check_time_complexity_lerp_vec(lerp)
-            check_time_complexity_lerp_mat(lerp)
+            check_time_complexity_vec_vec_float(lerp)
+            check_time_complexity_mat_mat_float(lerp)
 
     except ValueError as e:
         print(e)

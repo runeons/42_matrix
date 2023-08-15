@@ -15,9 +15,9 @@ def main():
         print(Vector(1., 1.).dot(Vector(1., 1.)))
         print(Vector(-1., 6.).dot(Vector(3., 2.)))
 
-        if COMPLEXITY == True:
-            check_time_complexity_lerp_vec(lerp)
-            check_time_complexity_lerp_mat(lerp)
+        # if COMPLEXITY == True:
+        #     check_time_complexity_lerp_vec(lerp)
+        #     check_time_complexity_lerp_mat(lerp)
 
     except ValueError as e:
         print(e)

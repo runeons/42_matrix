@@ -1,7 +1,7 @@
 from utils_colors import Colors
 from class_vector import Vector
 from utils_operations import linear_combination
-from utils_complexity import check_time_complexity_vec_lin_comb
+from utils_complexity import check_time_complexity_vec_nums
 from utils_constants import *
 
 def print_title(title, color=Colors.YELLOW):
@@ -23,7 +23,7 @@ def main():
         linear_combination(vectors_2, [10., -2.]).summary()
 
         if COMPLEXITY == True:
-            check_time_complexity_vec_lin_comb(linear_combination)
+            check_time_complexity_vec_nums(linear_combination)
 
     except ValueError as e:
         print(e)
