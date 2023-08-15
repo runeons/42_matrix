@@ -71,3 +71,10 @@ class Vector:
         res = [i * scalar for i in self.coordinates]
         return Vector(*res)
 
+    def dot(self, v):
+        if self.size() != v.size():
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Cannot dot two vectors of different sizes.")
+        dot = 0.
+        for i, j in zip(self.coordinates, v.coordinates):
+            dot += i * j
+        return dot

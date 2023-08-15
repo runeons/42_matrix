@@ -10,16 +10,18 @@ def print_title(title, color=Colors.YELLOW):
 
 def main():
     try:
+        print_title(">>>>>>>>>> INT linear interpolation <<<<<<<<<<", Colors.GREEN)
         int_tests = [
             (0., 1., 0.),
             (0., 1., 1.),
             (0., 1., 0.5),
             (21., 42., 0.3),
         ]
-        print_title(">>>>>>>>>> INT linear combination <<<<<<<<<<", Colors.GREEN)
         for test in int_tests:
             print(lerp(*test))
+        print_title(">>>>>>>>>> VECTOR linear interpolation <<<<<<<<<<", Colors.GREEN)
         lerp(Vector(2., 1.), Vector(4., 2.), 0.3).summary()
+        print_title(">>>>>>>>>> MATRIX linear interpolation <<<<<<<<<<", Colors.GREEN)
         lerp(Matrix([2., 1.], [3., 4.]), Matrix([20., 10.], [30., 40.]), 0.5).summary()
 
         if COMPLEXITY == True:
