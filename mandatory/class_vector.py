@@ -78,3 +78,24 @@ class Vector:
         for i, j in zip(self.coordinates, v.coordinates):
             dot += i * j
         return dot
+
+    def _abs(self, x):
+        if x < 0:
+            return -x
+        return x
+
+    def norm_1(self):
+        norm = 0.
+        for i in self.coordinates:
+            norm += self._abs(i)
+        return norm
+
+    def norm(self):
+        norm = 0.
+        for i in self.coordinates:
+            norm += pow(i, 2)
+        return norm ** 0.5
+
+    def norm_inf(self):
+        norm = max([self._abs(i) for i in self.coordinates])
+        return norm

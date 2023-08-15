@@ -144,3 +144,17 @@ def check_time_complexity_mat_mat_float(f):
         execution_time = end_time - start_time
         res.append((10 ** i, execution_time))
     print_complexity_summary(res)
+
+def check_time_complexity_vec(f, title):
+    if COMPLEXITY == False:
+        return
+    print_title(title + " complexity")
+    res = []
+    for i in range(MAX_NB_DIGITS):
+        v1 = create_input_long_vector(i)
+        start_time = time.time_ns()
+        f(v1)
+        end_time = time.time_ns()
+        execution_time = end_time - start_time
+        res.append((10 ** i, execution_time))
+    print_complexity_summary(res)
