@@ -1,7 +1,7 @@
 from utils_colors import Colors
 from class_matrix import Matrix
 from class_vector import Vector
-from utils_operations import reshape, matrix_from_shape
+from utils_operations import reshape
 from utils_complexity import get_vector_inputs, check_time_complexity, get_matrix_inputs
 from utils_constants import *
 
