@@ -1,4 +1,5 @@
 from utils_colors import Colors
+from class_vector import Vector
 
 class Matrix:
     def __init__(self, *rows):
@@ -99,3 +100,30 @@ class Matrix:
     def scl(self, scalar):
         res = [[c * float(scalar) for c in row] for row in self.rows]
         return Matrix(*res)
+
+    def mul_vec(self, v):
+        dim = v.size()
+        if self.shape()[1] != dim:
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Cannot perform matrix vector multiplication if the number of matrix columns (dimensions) differs from vector size (dimenssions).")
+        new_nb_rows = self.shape()[0]
+        res_coords = [0] * new_nb_rows
+        for i in range(new_nb_rows):
+            for j in range(dim):
+                res_coords[i] += self.rows[i][j] * v.coordinates[j]
+        return Vector(*res_coords)
+
+    def _concat_mat_vec(m, v):
+        pass
+
+    def mul_mat(self, m):
+        dim = self.shape()[1]
+        if dim != m.shape()[0]:
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Cannot perform matrix matrix multiplication if the number of dimensions differs.")
+        res_nb_rows = self.shape()[0]
+        res_nb_cols = m.shape()[1]
+        res_coords = [[0] * res_nb_cols for _ in range(res_nb_rows)]
+        for c in range(res_nb_cols):
+            for r in range(res_nb_rows):
+                for i in range(dim):
+                    res_coords[r][c] += self.rows[r][i] * m.rows[i][c]
+        return Matrix(*res_coords)
