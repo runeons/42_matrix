@@ -30,6 +30,11 @@ class Matrix:
         # all_columns = [[self.rows[row_index][col_index] for row_index in range(nb_rows)] for col_index in range(nb_cols)]
         return all_columns
 
+    def transpose(self):
+        nb_rows, nb_cols = self.shape()
+        all_columns = [[self.rows[row_index][col_index] for row_index in range(nb_rows)] for col_index in range(nb_cols)]
+        return Matrix(*all_columns)
+
     def __str__(self):
         s = f"{Colors.MATRIX}MATRIX:{Colors.RES}\n"
         max_width = max([max(len(str(coord)) for coord in row) for row in self.rows])
