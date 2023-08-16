@@ -143,9 +143,45 @@ class Matrix:
                     trace += self.rows[c][r]
         return trace
     
+    def _abs(self, x):
+        if x < 0:
+            return -x
+        return x
+
+    # 3 elementary operations
+    def _swap_rows(self, r1_i, r2_i):
+        if (r1_i == r2_i):
+            return
+        tmp_r1 = self.rows[r1_i]
+        self.rows[r1_i] = self.rows[r2_i]
+        self.rows[r2_i] = tmp_r1
+
     def row_echelon(self):
+        (nb_rows, nb_cols) = self.shape()
+        r = -1
+        for j in range(nb_cols):
+            max_val = 0
+            k = -1
+            for i in range(r + 1, nb_rows):
+                if self._abs(self.rows[i][j]) > max_val:
+                    max_val = self._abs(self.rows[i][j])
+                    k = i
+            if k == -1:
+                continue
+            pivot = self.rows[k][j]
+            if pivot != 0:
+                r += 1
+                for l in range(j, nb_cols):
+                    self.rows[k][l] /= pivot
+                if k != r:
+                    self.rows[k], self.rows[r] = self.rows[r], self.rows[k]
+                for i in range(nb_rows):
+                    if i != r:
+                        coeff = self.rows[i][j]
+                        for l in range(j, nb_cols):
+                            self.rows[i][l] -= coeff * self.rows[r][l]
         return self
-    
+
     def determinant(self):
         return 0.
     
