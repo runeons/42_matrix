@@ -142,3 +142,15 @@ class Matrix:
                 if (c == r):
                     trace += self.rows[c][r]
         return trace
+    
+    def row_echelon(self):
+        return self
+    
+    def determinant(self):
+        return 0.
+    
+    def inverse(self):
+        return self
+    
+    def rank(self):
+        return 0
