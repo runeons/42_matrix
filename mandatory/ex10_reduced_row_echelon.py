@@ -11,8 +11,8 @@ def main():
         Matrix([0., 2. ], [0., 4. ]).row_echelon().summary()
         Matrix([8., 5., -2., 4., 28.], [4., 2.5, 20., 4., -4.], [8., 5., 1., 4., 17.]).row_echelon().summary()
 
-        # if COMPLEXITY == True:
-            # check_time_complexity_mat(Matrix.transpose, "MATRIX REDUCED ROW ECHELON")
+        if COMPLEXITY == True:
+            check_time_complexity_mat(Matrix.transpose, "MATRIX REDUCED ROW ECHELON")
 
     except ValueError as e:
         print(e)
