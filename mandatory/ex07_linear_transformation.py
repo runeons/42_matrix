@@ -2,7 +2,7 @@ from class_vector import Vector
 from class_matrix import Matrix
 from utils_display import print_title
 from utils_operations import cross_product
-from utils_complexity import check_time_complexity_mat_vec, check_time_complexity_mat_mat
+from utils_complexity import check_time_complexity_mat_vec, check_time_complexity_mat_mul
 from utils_constants import COMPLEXITY
 
 def main():
@@ -17,9 +17,9 @@ def main():
         Matrix([1., 0., ], [0., 1., ]).mul_mat(Matrix([2., 1., ], [4., 2., ])).summary()
         Matrix([3., -5., ], [6., 8., ]).mul_mat(Matrix([2., 1., ], [4., 2., ])).summary()
 
-        # if COMPLEXITY == True:
-        #     check_time_complexity_mat_vec(Matrix.mul_vec, "MATRIX VECTOR MULTIPLICATION")
-        #     check_time_complexity_mat_mat(Matrix.mul_mat, "MATRIX MATRIX MULTIPLICATION")
+        if COMPLEXITY == True:
+            check_time_complexity_mat_vec(Matrix.mul_vec, "MATRIX VECTOR MULTIPLICATION")
+            check_time_complexity_mat_mul(Matrix.mul_mat, "MATRIX MATRIX MULTIPLICATION")
 
     except ValueError as e:
         print(e)

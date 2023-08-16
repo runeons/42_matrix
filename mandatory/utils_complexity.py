@@ -2,7 +2,7 @@ import time
 import random
 from utils_colors import Colors
 from utils_operations import matrix_from_shape, vector_from_size
-from utils_constants import COMPLEXITY, MAX_NB_DIGITS, SIMPLE_VECTOR_SIZE, SIMPLE_SCALAR
+from utils_constants import COMPLEXITY, MAX_NB_DIGITS, CONSTANT_VECTOR_SIZE, CONSTANT_SCALAR, CONSTANT_P
 from utils_display import print_title
 
 def print_complexity_summary(res):
@@ -26,10 +26,10 @@ def create_input_long_matrix(complex_nb_digits):
     return matrix_from_shape(x, y)
 
 def create_input_many_vectors(complex_nb_digits):
-    simple_v = vector_from_size(SIMPLE_VECTOR_SIZE)
+    CONSTANT_v = vector_from_size(CONSTANT_VECTOR_SIZE)
     vectors = []
     for _ in range (10 ** complex_nb_digits):
-        vectors.append(simple_v)
+        vectors.append(CONSTANT_v)
     return vectors
 
 def create_input_many_matrices(complex_nb_digits):
@@ -41,7 +41,7 @@ def create_input_many_matrices(complex_nb_digits):
 def create_input_many_numbers(complex_nb_digits):
     numbers = []
     for _ in range (10 ** complex_nb_digits):
-        numbers.append(SIMPLE_SCALAR)
+        numbers.append(CONSTANT_SCALAR)
     return numbers
 
 def check_time_complexity_vec_vec(f, title):
@@ -82,7 +82,7 @@ def check_time_complexity_vec_scal(f, title):
     for i in range(MAX_NB_DIGITS):
         v1 = create_input_long_vector(i)
         start_time = time.time_ns()
-        f(v1, SIMPLE_SCALAR)
+        f(v1, CONSTANT_SCALAR)
         end_time = time.time_ns()
         execution_time = end_time - start_time
         res.append((10 ** i, execution_time))
@@ -96,7 +96,7 @@ def check_time_complexity_mat_scal(f, title):
     for i in range(MAX_NB_DIGITS):
         m1 = create_input_long_matrix(i)
         start_time = time.time_ns()
-        f(m1, SIMPLE_SCALAR)
+        f(m1, CONSTANT_SCALAR)
         end_time = time.time_ns()
         execution_time = end_time - start_time
         res.append((10 ** i, execution_time))
@@ -170,9 +170,24 @@ def check_time_complexity_mat_vec(f, title):
     res = []
     for i in range(MAX_NB_DIGITS):
         m1 = create_input_long_matrix(i)
-        v1 = create_input_long_vector(i)
+        v1 = vector_from_size(m1.shape()[1])
         start_time = time.time_ns()
         f(m1, v1)
+        end_time = time.time_ns()
+        execution_time = end_time - start_time
+        res.append((10 ** i, execution_time))
+    print_complexity_summary(res)
+
+def check_time_complexity_mat_mul(f, title):
+    if COMPLEXITY == False:
+        return
+    print_title(title + " complexity")
+    res = []
+    for i in range(MAX_NB_DIGITS):
+        m1 = create_input_long_matrix(i)
+        m2 = matrix_from_shape(m1.shape()[1], CONSTANT_P)
+        start_time = time.time_ns()
+        f(m1, m2)
         end_time = time.time_ns()
         execution_time = end_time - start_time
         res.append((10 ** i, execution_time))
