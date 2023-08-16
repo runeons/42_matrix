@@ -127,3 +127,13 @@ class Matrix:
                 for i in range(dim):
                     res_coords[r][c] += self.rows[r][i] * m.rows[i][c]
         return Matrix(*res_coords)
+
+    def trace(self):
+        if self.shape()[0] != self.shape()[1]:
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Cannot perform matrix trace on non squared matrix.")
+        trace = 0.
+        for c in range(self.shape()[0]):
+            for r in range(self.shape()[1]):
+                if (c == r):
+                    trace += self.rows[c][r]
+        return trace

@@ -192,3 +192,17 @@ def check_time_complexity_mat_mul(f, title):
         execution_time = end_time - start_time
         res.append((10 ** i, execution_time))
     print_complexity_summary(res)
+
+def check_time_complexity_sq_mat(f, title):
+    if COMPLEXITY == False:
+        return
+    print_title(title + " complexity")
+    res = []
+    for i in range(int(MAX_NB_DIGITS / 2)):
+        m1 = matrix_from_shape(10 ** i, 10 ** i)
+        start_time = time.time_ns()
+        f(m1)
+        end_time = time.time_ns()
+        execution_time = end_time - start_time
+        res.append((10 ** (i + i), execution_time))
+    print_complexity_summary(res)
