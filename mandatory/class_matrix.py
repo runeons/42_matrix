@@ -1,6 +1,9 @@
 from utils_colors import Colors
 from class_vector import Vector
 
+class LogicError(Exception):
+    "Raised when we try to calculate the inverse of a matrix with a 0 determinant"
+
 class Matrix:
     def __init__(self, *rows):
         try:
@@ -231,19 +234,59 @@ class Matrix:
     def determinant(self):
         if not self.is_square():
             raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Non squared matrix don't have determinant.")
-        (r, c) = self.shape()
-        if r == 1:
+        dim = self.shape()[0]
+        if dim == 1:
             return self.rows[0][0]
-        elif r == 2:
+        elif dim == 2:
             return self._det_dim_2(self)
-        elif r == 3:
+        elif dim == 3:
             return self._det_dim_3(self)
-        elif r == 4:
+        elif dim == 4:
             return self._det_dim_4(self)
-        return "WRONG"
+        raise LogicError(f"{Colors.ERROR}Error: {Colors.RES}Determinant for matrices of dimensions higher than 4 not implemented.")
     
+    def _comatrice(self):
+        if not self.is_square():
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Non squared matrix don't have comatrix.")
+        dim = self.shape()[0]
+        if dim == 2:
+            a = self.rows[0][0]
+            b = self.rows[0][1]
+            c = self.rows[1][0]
+            d = self.rows[1][1]
+            com = Matrix([d, -c], [-b, a])
+            return com
+        elif dim == 3:
+            a = self.rows[0][0]
+            b = self.rows[0][1]
+            c = self.rows[0][2]
+            d = self.rows[1][0]
+            e = self.rows[1][1]
+            f = self.rows[1][2]
+            g = self.rows[2][0]
+            h = self.rows[2][1]
+            i = self.rows[2][2]
+            com = Matrix(
+                [+self._det_dim_2(Matrix([e, f], [h, i])), -self._det_dim_2(Matrix([d, f], [g, i])), +self._det_dim_2(Matrix([d, e], [g, h]))], 
+                [-self._det_dim_2(Matrix([b, c], [h, i])), +self._det_dim_2(Matrix([a, c], [g, i])), -self._det_dim_2(Matrix([a, b], [g, h]))], 
+                [+self._det_dim_2(Matrix([b, c], [e, f])), -self._det_dim_2(Matrix([a, c], [d, f])), +self._det_dim_2(Matrix([a, b], [d, e]))]
+            )
+            return com
+        raise LogicError(f"{Colors.ERROR}Error: {Colors.RES}Comatrix for matrices of dimensions higher than 3 not implemented.")
+
     def inverse(self):
-        return self
+        if not self.is_square():
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Non squared matrix don't have absolute inverse.")
+        det = self.determinant()
+        if det == 0:
+            raise LogicError(f"{Colors.ERROR}Error: {Colors.RES}Cannot compute inverse of a matrix with a nul determinant.")
+        dim = self.shape()[0]
+        if dim == 1:
+            return Matrix([1/self.rows[0][0]])
+        m_comatrice = self._comatrice()
+        m_complementaire = m_comatrice.transpose()
+        m_inverse = m_complementaire * (1 / det)
+        return m_inverse
     
     def rank(self):
         return 0

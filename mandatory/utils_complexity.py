@@ -221,13 +221,12 @@ def check_time_complexity_mat(f, title):
         res.append((10 ** i, execution_time))
     print_complexity_summary(res)
 
-
-def check_time_complexity_sq_mat_det(f, title):
+def check_time_complexity_sq_mat_dim(f, title, max_dim):
     if COMPLEXITY == False:
         return
     print_title(title + " complexity")
     res = []
-    for i in range(1, 5):
+    for i in range(1, max_dim + 1):
         m1 = matrix_from_shape(i, i)
         start_time = time.time_ns()
         f(m1)

@@ -1,6 +1,6 @@
 from class_matrix import Matrix
 from utils_display import print_title
-from utils_complexity import check_time_complexity_sq_mat_det
+from utils_complexity import check_time_complexity_sq_mat_dim
 from utils_constants import COMPLEXITY
 
 def main():
@@ -12,7 +12,7 @@ def main():
         print(Matrix([ 8., 5., -2., 4.], [ 4., 2.5, 20., 4.], [ 8., 5., 1., 4.], [28., -4., 17., 1.]).determinant())
 
         if COMPLEXITY == True:
-            check_time_complexity_sq_mat_det(Matrix.determinant, "MATRIX DETERMINANT")
+            check_time_complexity_sq_mat_dim(Matrix.determinant, "MATRIX DETERMINANT", max_dim=4)
 
     except ValueError as e:
         print(e)
