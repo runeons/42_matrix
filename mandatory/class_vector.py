@@ -44,13 +44,13 @@ class Vector:
         if (isinstance(scalar, int) or isinstance(scalar, float)):
             return self.scl(scalar)
         else:
-            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Vector multiplication not implemented yet.")
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Vector multiplication not implemented.")
 
     def __div__(self, scalar):
         if (isinstance(scalar, int) or isinstance(scalar, float)):
             return self.scl(1 / scalar)
         else:
-            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Vector multiplication not implemented yet.")
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Vector multiplication not implemented.")
 
     def size(self):
         return len(self.coordinates)

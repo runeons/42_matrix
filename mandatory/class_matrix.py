@@ -76,13 +76,13 @@ class Matrix:
         if (isinstance(scalar, int) or isinstance(scalar, float)):
             return self.scl(scalar)
         else:
-            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Matrix multiplication not implemented yet.")
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Matrix multiplication not implemented.")
 
     def __div__(self, scalar):
         if (isinstance(scalar, int) or isinstance(scalar, float)):
             return self.scl(1 / scalar)
         else:
-            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Matrix multiplication not implemented yet.")
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Matrix multiplication not implemented.")
 
     def shape(self):
         x = len(self.rows)
