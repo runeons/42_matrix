@@ -1,7 +1,7 @@
 from utils_colors import Colors
 from class_matrix import Matrix
 from class_vector import Vector
-from utils_display import print_title
+from utils_display import print_title, space_complexity
 from utils_operations import reshape
 from utils_complexity import check_time_complexity_vec_vec, check_time_complexity_mat_mat, check_time_complexity_vec_scal, check_time_complexity_mat_scal
 from utils_constants import COMPLEXITY
@@ -71,7 +71,7 @@ def main():
 
         if COMPLEXITY == True:
             print_title(">>>>>>>>>> BASIC OPERATIONS complexity <<<<<<<<<<")
-            check_time_complexity_vec_vec(Vector.add, "ADD VECTOR")
+            check_time_complexity_vec_vec(space_complexity(Vector.add), "ADD VECTOR")
             check_time_complexity_vec_vec(Vector.add, "SUB VECTOR")
             check_time_complexity_vec_scal(Vector.scl, "SCL VECTOR")
             check_time_complexity_mat_mat(Matrix.add, "ADD MATRIX")

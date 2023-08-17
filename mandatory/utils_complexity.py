@@ -15,7 +15,6 @@ def print_complexity_summary(res):
             ratio = curr_time / prev_time
             print(f"{Colors.BLUE}Size:{Colors.RES} {n}{Colors.BLUE}, Execution time: {Colors.RES}{curr_time}{Colors.BLUE}, Ratio: {Colors.RES}{ratio:.2f}")
 
-
 def create_input_long_vector(complex_nb_digits):
     return vector_from_size(10 ** complex_nb_digits)
 

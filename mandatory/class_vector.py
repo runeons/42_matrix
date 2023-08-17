@@ -1,4 +1,5 @@
 from utils_colors import Colors
+from utils_display import space_complexity
 
 class Vector:
     def __init__ (self, *coordinates):
@@ -55,6 +56,7 @@ class Vector:
     def size(self):
         return len(self.coordinates)
 
+    @space_complexity
     def add(self, v: 'Vector'):
         if self.size() != v.size():
             raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Cannot add two vectors of different sizes.")
