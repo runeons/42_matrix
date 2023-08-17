@@ -1,7 +1,7 @@
 from class_vector import Vector
 from utils_display import print_title
 from utils_operations import linear_combination
-from utils_complexity import check_time_complexity_vec_nums
+from utils_complexity import time_complexity_vec_nums
 from utils_constants import COMPLEXITY
 
 def main():
@@ -20,7 +20,7 @@ def main():
         linear_combination(vectors_2, [10., -2.]).summary()
 
         if COMPLEXITY == True:
-            check_time_complexity_vec_nums(linear_combination, "LINEAR COMBINATION VECTOR")
+            time_complexity_vec_nums(linear_combination, "LINEAR COMBINATION VECTOR")
 
     except ValueError as e:
         print(e)

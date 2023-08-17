@@ -43,7 +43,7 @@ def create_input_many_numbers(complex_nb_digits):
         numbers.append(CONSTANT_SCALAR)
     return numbers
 
-def check_time_complexity_vec_vec(f, title):
+def time_complexity_vec_vec(f, title):
     if COMPLEXITY == False:
         return
     print_title(title + " complexity")
@@ -58,7 +58,7 @@ def check_time_complexity_vec_vec(f, title):
         res.append((10 ** i, execution_time))
     print_complexity_summary(res)
     
-def check_time_complexity_mat_mat(f, title):
+def time_complexity_mat_mat(f, title):
     if COMPLEXITY == False:
         return
     print_title(title + " complexity")
@@ -73,7 +73,7 @@ def check_time_complexity_mat_mat(f, title):
         res.append((10 ** i, execution_time))
     print_complexity_summary(res)
 
-def check_time_complexity_vec_scal(f, title):
+def time_complexity_vec_scal(f, title):
     if COMPLEXITY == False:
         return
     print_title(title + " complexity")
@@ -87,7 +87,7 @@ def check_time_complexity_vec_scal(f, title):
         res.append((10 ** i, execution_time))
     print_complexity_summary(res)
 
-def check_time_complexity_mat_scal(f, title):
+def time_complexity_mat_scal(f, title):
     if COMPLEXITY == False:
         return
     print_title(title + " complexity")
@@ -101,7 +101,7 @@ def check_time_complexity_mat_scal(f, title):
         res.append((10 ** i, execution_time))
     print_complexity_summary(res)
 
-def check_time_complexity_vec_nums(f, title):
+def time_complexity_vec_nums(f, title):
     if COMPLEXITY == False:
         return
     print_title(title + " complexity")
@@ -116,7 +116,7 @@ def check_time_complexity_vec_nums(f, title):
         res.append((10 ** i, execution_time))
     print_complexity_summary(res)
 
-def check_time_complexity_vec_vec_float(f, title):
+def time_complexity_vec_vec_float(f, title):
     if COMPLEXITY == False:
         return
     print_title(title + " complexity")
@@ -132,7 +132,7 @@ def check_time_complexity_vec_vec_float(f, title):
         res.append((10 ** i, execution_time))
     print_complexity_summary(res)
 
-def check_time_complexity_mat_mat_float(f, title):
+def time_complexity_mat_mat_float(f, title):
     if COMPLEXITY == False:
         return
     print_title(title + " complexity")
@@ -148,7 +148,7 @@ def check_time_complexity_mat_mat_float(f, title):
         res.append((10 ** i, execution_time))
     print_complexity_summary(res)
 
-def check_time_complexity_vec(f, title):
+def time_complexity_vec(f, title):
     if COMPLEXITY == False:
         return
     print_title(title + " complexity")
@@ -162,7 +162,7 @@ def check_time_complexity_vec(f, title):
         res.append((10 ** i, execution_time))
     print_complexity_summary(res)
     
-def check_time_complexity_mat_vec(f, title):
+def time_complexity_mat_vec(f, title):
     if COMPLEXITY == False:
         return
     print_title(title + " complexity")
@@ -177,7 +177,7 @@ def check_time_complexity_mat_vec(f, title):
         res.append((10 ** i, execution_time))
     print_complexity_summary(res)
 
-def check_time_complexity_mat_mul(f, title):
+def time_complexity_mat_mul(f, title):
     if COMPLEXITY == False:
         return
     print_title(title + " complexity")
@@ -192,7 +192,7 @@ def check_time_complexity_mat_mul(f, title):
         res.append((10 ** i, execution_time))
     print_complexity_summary(res)
 
-def check_time_complexity_sq_mat(f, title):
+def time_complexity_sq_mat(f, title):
     if COMPLEXITY == False:
         return
     print_title(title + " complexity")
@@ -206,7 +206,7 @@ def check_time_complexity_sq_mat(f, title):
         res.append((10 ** (i + i), execution_time))
     print_complexity_summary(res)
 
-def check_time_complexity_mat(f, title):
+def time_complexity_mat(f, title):
     if COMPLEXITY == False:
         return
     print_title(title + " complexity")
@@ -220,7 +220,7 @@ def check_time_complexity_mat(f, title):
         res.append((10 ** i, execution_time))
     print_complexity_summary(res)
 
-def check_time_complexity_sq_mat_dim(f, title, max_dim):
+def time_complexity_sq_mat_dim(f, title, max_dim):
     if COMPLEXITY == False:
         return
     print_title(title + " complexity")

@@ -1,6 +1,6 @@
 from class_matrix import Matrix
 from utils_display import print_title
-from utils_complexity import check_time_complexity_sq_mat
+from utils_complexity import time_complexity_sq_mat
 from utils_constants import COMPLEXITY
 
 def main():
@@ -11,7 +11,7 @@ def main():
         print(Matrix([-2., -8., 4.], [1., -23., 4.], [0., 6., 4.]).trace())
 
         if COMPLEXITY == True:
-            check_time_complexity_sq_mat(Matrix.trace, "MATRIX TRACE")
+            time_complexity_sq_mat(Matrix.trace, "MATRIX TRACE")
 
     except ValueError as e:
         print(e)

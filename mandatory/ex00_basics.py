@@ -3,7 +3,7 @@ from class_matrix import Matrix
 from class_vector import Vector
 from utils_display import print_title, space_complexity
 from utils_operations import reshape
-from utils_complexity import check_time_complexity_vec_vec, check_time_complexity_mat_mat, check_time_complexity_vec_scal, check_time_complexity_mat_scal
+from utils_complexity import time_complexity_vec_vec, time_complexity_mat_mat, time_complexity_vec_scal, time_complexity_mat_scal
 from utils_constants import COMPLEXITY
 
 def main():
@@ -71,12 +71,12 @@ def main():
 
         if COMPLEXITY == True:
             print_title(">>>>>>>>>> BASIC OPERATIONS complexity <<<<<<<<<<")
-            check_time_complexity_vec_vec(space_complexity(Vector.add), "ADD VECTOR")
-            check_time_complexity_vec_vec(Vector.add, "SUB VECTOR")
-            check_time_complexity_vec_scal(Vector.scl, "SCL VECTOR")
-            check_time_complexity_mat_mat(Matrix.add, "ADD MATRIX")
-            check_time_complexity_mat_mat(Matrix.sub, "SUB MATRIX")
-            check_time_complexity_mat_scal(Matrix.scl, "SCL MATRIX")
+            time_complexity_vec_vec(space_complexity(Vector.add), "ADD VECTOR")
+            time_complexity_vec_vec(Vector.add, "SUB VECTOR")
+            time_complexity_vec_scal(Vector.scl, "SCL VECTOR")
+            time_complexity_mat_mat(Matrix.add, "ADD MATRIX")
+            time_complexity_mat_mat(Matrix.sub, "SUB MATRIX")
+            time_complexity_mat_scal(Matrix.scl, "SCL MATRIX")
 
     except ValueError as e:
         print(e)

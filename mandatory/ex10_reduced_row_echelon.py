@@ -1,6 +1,6 @@
 from class_matrix import Matrix
 from utils_display import print_title
-from utils_complexity import check_time_complexity_mat
+from utils_complexity import time_complexity_mat
 from utils_constants import COMPLEXITY
 
 def main():
@@ -12,7 +12,7 @@ def main():
         Matrix([8., 5., -2., 4., 28.], [4., 2.5, 20., 4., -4.], [8., 5., 1., 4., 17.]).row_echelon().summary()
 
         if COMPLEXITY == True:
-            check_time_complexity_mat(Matrix.row_echelon, "MATRIX REDUCED ROW ECHELON")
+            time_complexity_mat(Matrix.row_echelon, "MATRIX REDUCED ROW ECHELON")
 
     except ValueError as e:
         print(e)

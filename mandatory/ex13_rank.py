@@ -1,6 +1,6 @@
 from class_matrix import Matrix
 from utils_display import print_title
-from utils_complexity import check_time_complexity_mat
+from utils_complexity import time_complexity_mat
 from utils_constants import COMPLEXITY
 
 def main():
@@ -12,7 +12,7 @@ def main():
         print(Matrix([ 8., 5., -2.], [ 4., 7., 20.], [ 7., 6., 1.], [21., 18., 7.]).rank())
 
         if COMPLEXITY == True:
-            check_time_complexity_mat(Matrix.rank, "MATRIX RANK")
+            time_complexity_mat(Matrix.rank, "MATRIX RANK")
 
     except ValueError as e:
         print(e)

@@ -1,6 +1,6 @@
 from class_matrix import Matrix, LogicError
 from utils_display import print_title
-from utils_complexity import check_time_complexity_sq_mat_dim
+from utils_complexity import time_complexity_sq_mat_dim
 from utils_constants import COMPLEXITY
 
 def main():
@@ -21,7 +21,7 @@ def main():
 
         try:
             if COMPLEXITY == True:
-                check_time_complexity_sq_mat_dim(Matrix.inverse, "MATRIX INVERSE", max_dim=3)
+                time_complexity_sq_mat_dim(Matrix.inverse, "MATRIX INVERSE", max_dim=3)
         except LogicError as e:
                 print(e)
 
