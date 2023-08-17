@@ -1,7 +1,6 @@
 from class_vector import Vector
 from class_matrix import Matrix
 from utils_display import print_title
-from utils_operations import cross_product
 from utils_complexity import time_complexity_mat_vec, time_complexity_mat_mul
 from utils_constants import COMPLEXITY
 

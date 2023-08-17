@@ -1,6 +1,6 @@
 from class_vector import Vector
 from class_matrix import Matrix
-from utils_display import print_title
+from utils_display import print_title, space_complexity
 from utils_operations import lerp
 from utils_complexity import time_complexity_vec_vec_float, time_complexity_mat_mat_float
 from utils_constants import COMPLEXITY
@@ -22,8 +22,8 @@ def main():
         lerp(Matrix([2., 1.], [3., 4.]), Matrix([20., 10.], [30., 40.]), 0.5).summary()
 
         if COMPLEXITY == True:
-            time_complexity_vec_vec_float(lerp, "LINEAR INTERPOLATION VECTOR")
-            time_complexity_mat_mat_float(lerp, "LINEAR INTERPOLATION MATRIX")
+            time_complexity_vec_vec_float(space_complexity(lerp), "LINEAR INTERPOLATION VECTOR")
+            time_complexity_mat_mat_float(space_complexity(lerp), "LINEAR INTERPOLATION MATRIX")
 
     except ValueError as e:
         print(e)

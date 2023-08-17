@@ -1,5 +1,5 @@
 from class_vector import Vector
-from utils_display import print_title
+from utils_display import print_title, space_complexity
 from utils_complexity import time_complexity_vec_vec
 from utils_constants import COMPLEXITY
 
@@ -11,7 +11,7 @@ def main():
         print(Vector(-1., 6.).dot(Vector(3., 2.)))
 
         if COMPLEXITY == True:
-            time_complexity_vec_vec(Vector.dot, "VECTOR dot product")
+            time_complexity_vec_vec(space_complexity(Vector.dot), "VECTOR dot product")
 
     except ValueError as e:
         print(e)

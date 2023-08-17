@@ -75,6 +75,7 @@ class Vector:
         res = [i * scalar for i in self.coordinates]
         return Vector(*res)
 
+    @space_complexity
     def dot(self, v):
         if self.size() != v.size():
             raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Cannot dot two vectors of different sizes.")
@@ -88,18 +89,21 @@ class Vector:
             return -x
         return x
 
+    @space_complexity
     def norm_1(self):
         norm = 0.
         for i in self.coordinates:
             norm += self._abs(i)
         return norm
 
+    @space_complexity
     def norm(self):
         norm = 0.
         for i in self.coordinates:
             norm += pow(i, 2)
         return norm ** 0.5
 
+    @space_complexity
     def norm_inf(self):
         norm = max([self._abs(i) for i in self.coordinates])
         return norm
