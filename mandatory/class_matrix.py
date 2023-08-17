@@ -1,5 +1,6 @@
 from utils_colors import Colors
 from class_vector import Vector
+from utils_display import space_complexity
 
 class LogicError(Exception):
     "Raised when we try to calculate the inverse of a matrix with a 0 determinant"
@@ -33,6 +34,7 @@ class Matrix:
         # all_columns = [[self.rows[row_index][col_index] for row_index in range(nb_rows)] for col_index in range(nb_cols)]
         return all_columns
 
+    @space_complexity
     def transpose(self):
         nb_rows, nb_cols = self.shape()
         all_columns = [[self.rows[row_index][col_index] for row_index in range(nb_rows)] for col_index in range(nb_cols)]
@@ -109,6 +111,7 @@ class Matrix:
         res = [[c * float(scalar) for c in row] for row in self.rows]
         return Matrix(*res)
 
+    @space_complexity
     def mul_vec(self, v):
         dim = v.size()
         if self.shape()[1] != dim:
@@ -123,6 +126,7 @@ class Matrix:
     def _concat_mat_vec(m, v):
         pass
 
+    @space_complexity
     def mul_mat(self, m):
         dim = self.shape()[1]
         if dim != m.shape()[0]:
@@ -159,6 +163,7 @@ class Matrix:
         self.rows[r1_i] = self.rows[r2_i]
         self.rows[r2_i] = tmp_r1
 
+    @space_complexity
     def row_echelon(self):
         (nb_rows, nb_cols) = self.shape()
         r = -1
@@ -213,6 +218,7 @@ class Matrix:
                   - d * self._det_dim_3(Matrix([e, f, g], [i, j, k], [m, n, o]))
             return det
 
+    @space_complexity
     def determinant(self):
         if not self.is_square():
             raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Non squared matrix don't have determinant.")

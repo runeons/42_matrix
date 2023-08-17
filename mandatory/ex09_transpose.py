@@ -1,5 +1,5 @@
 from class_matrix import Matrix
-from utils_display import print_title
+from utils_display import print_title, space_complexity
 from utils_complexity import time_complexity_mat
 from utils_constants import COMPLEXITY
 
@@ -13,7 +13,7 @@ def main():
         Matrix([2., 3., 4.], [4., 6., 8.], [6., 9., 12.], [8., 12., 16.]).transpose().summary()
 
         if COMPLEXITY == True:
-            time_complexity_mat(Matrix.transpose, "MATRIX TRANSPOSE")
+            time_complexity_mat(space_complexity(Matrix.transpose), "MATRIX TRANSPOSE")
 
     except ValueError as e:
         print(e)
