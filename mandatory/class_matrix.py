@@ -165,30 +165,31 @@ class Matrix:
 
     @space_complexity
     def row_echelon(self):
-        (nb_rows, nb_cols) = self.shape()
+        ref = Matrix(*self.rows)
+        (nb_rows, nb_cols) = ref.shape()
         r = -1
         for j in range(nb_cols):
             max_val = 0
             k = -1
             for i in range(r + 1, nb_rows):
-                if self._abs(self.rows[i][j]) > max_val:
-                    max_val = self._abs(self.rows[i][j])
+                if ref._abs(ref.rows[i][j]) > max_val:
+                    max_val = ref._abs(ref.rows[i][j])
                     k = i
             if k == -1:
                 continue
-            pivot = self.rows[k][j]
+            pivot = ref.rows[k][j]
             if pivot != 0:
                 r += 1
                 for l in range(j, nb_cols):
-                    self.rows[k][l] /= pivot
+                    ref.rows[k][l] /= pivot
                 if k != r:
-                    self.rows[k], self.rows[r] = self.rows[r], self.rows[k]
+                    ref.rows[k], ref.rows[r] = ref.rows[r], ref.rows[k]
                 for i in range(nb_rows):
                     if i != r:
-                        coeff = self.rows[i][j]
+                        coef = -ref.rows[i][j]
                         for l in range(j, nb_cols):
-                            self.rows[i][l] -= coeff * self.rows[r][l]
-        return self
+                            ref.rows[i][l] += coef * ref.rows[r][l]
+        return ref
 
     def _det_dim_2(self, m):
         if not m.is_square() or m.shape()[0] != 2:
