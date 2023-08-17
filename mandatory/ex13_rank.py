@@ -11,7 +11,7 @@ def main():
         Matrix([ 8., 5., -2.], [ 4., 7., 20.], [ 7., 6., 1.], [21., 18., 7.]).rank()
 
         if COMPLEXITY == True:
-            check_time_complexity_mat(Matrix.transpose, "MATRIX RANK")
+            check_time_complexity_mat(Matrix.rank, "MATRIX RANK")
 
     except ValueError as e:
         print(e)

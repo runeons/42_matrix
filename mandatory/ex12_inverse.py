@@ -11,7 +11,7 @@ def main():
         Matrix([8., 5., -2.], [4., 7., 20.], [7., 6., 1.]).inverse().summary()
 
         if COMPLEXITY == True:
-            check_time_complexity_mat(Matrix.transpose, "MATRIX INVERSE")
+            check_time_complexity_mat(Matrix.inverse, "MATRIX INVERSE")
 
     except ValueError as e:
         print(e)

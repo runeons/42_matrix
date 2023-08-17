@@ -182,8 +182,65 @@ class Matrix:
                             self.rows[i][l] -= coeff * self.rows[r][l]
         return self
 
+    def _det_dim_2(self, m):
+        if not m.is_square() or m.shape()[0] != 2:
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Determinant of matrix 2x2.")
+        det = m.rows[0][0] * m.rows[1][1] - m.rows[0][1] * m.rows[1][0]
+        return det
+
+    def _det_dim_3(self, m):
+        if not m.is_square() or m.shape()[0] != 3:
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Determinant of matrix 3x3.")
+        a = m.rows[0][0]
+        b = m.rows[0][1]
+        c = m.rows[0][2]
+        d = m.rows[1][0]
+        e = m.rows[1][1]
+        f = m.rows[1][2]
+        g = m.rows[2][0]
+        h = m.rows[2][1]
+        i = m.rows[2][2]
+        det =   a * self._det_dim_2(Matrix([e, f], [h, i])) - \
+                b * self._det_dim_2(Matrix([d, f], [g, i])) + \
+                c * self._det_dim_2(Matrix([d, e], [g, h]))
+        return det
+
+    def _det_dim_4(self, mat):
+            a = mat.rows[0][0]
+            b = mat.rows[0][1]
+            c = mat.rows[0][2]
+            d = mat.rows[0][3]
+            e = mat.rows[1][0]
+            f = mat.rows[1][1]
+            g = mat.rows[1][2]
+            h = mat.rows[1][3]
+            i = mat.rows[2][0]
+            j = mat.rows[2][1]
+            k = mat.rows[2][2]
+            l = mat.rows[2][3]
+            m = mat.rows[3][0]
+            n = mat.rows[3][1]
+            o = mat.rows[3][2]
+            p = mat.rows[3][3]
+            det =   a * self._det_dim_3(Matrix([f, g, h], [j, k, l], [n, o, p])) \
+                  - b * self._det_dim_3(Matrix([e, g, h], [i, k, l], [m, o, p])) \
+                  + c * self._det_dim_3(Matrix([e, f, h], [i, j, l], [m, n, p])) \
+                  - d * self._det_dim_3(Matrix([e, f, g], [i, j, k], [m, n, o]))
+            return det
+
     def determinant(self):
-        return 0.
+        if not self.is_square():
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Non squared matrix don't have determinant.")
+        (r, c) = self.shape()
+        if r == 1:
+            return self.rows[0][0]
+        elif r == 2:
+            return self._det_dim_2(self)
+        elif r == 3:
+            return self._det_dim_3(self)
+        elif r == 4:
+            return self._det_dim_4(self)
+        return "WRONG"
     
     def inverse(self):
         return self

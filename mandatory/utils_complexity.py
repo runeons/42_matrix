@@ -220,3 +220,18 @@ def check_time_complexity_mat(f, title):
         execution_time = end_time - start_time
         res.append((10 ** i, execution_time))
     print_complexity_summary(res)
+
+
+def check_time_complexity_sq_mat_det(f, title):
+    if COMPLEXITY == False:
+        return
+    print_title(title + " complexity")
+    res = []
+    for i in range(1, 5):
+        m1 = matrix_from_shape(i, i)
+        start_time = time.time_ns()
+        f(m1)
+        end_time = time.time_ns()
+        execution_time = end_time - start_time
+        res.append((m1.shape()[0] * m1.shape()[1], execution_time))
+    print_complexity_summary(res)
