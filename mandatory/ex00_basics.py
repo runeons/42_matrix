@@ -72,11 +72,11 @@ def main():
         if COMPLEXITY == True:
             print_title(">>>>>>>>>> BASIC OPERATIONS complexity <<<<<<<<<<")
             time_complexity_vec_vec(space_complexity(Vector.add), "ADD VECTOR")
-            time_complexity_vec_vec(Vector.add, "SUB VECTOR")
-            time_complexity_vec_scal(Vector.scl, "SCL VECTOR")
-            time_complexity_mat_mat(Matrix.add, "ADD MATRIX")
-            time_complexity_mat_mat(Matrix.sub, "SUB MATRIX")
-            time_complexity_mat_scal(Matrix.scl, "SCL MATRIX")
+            time_complexity_vec_vec(space_complexity(Vector.sub), "SUB VECTOR")
+            time_complexity_vec_scal(space_complexity(Vector.scl), "SCL VECTOR")
+            time_complexity_mat_mat(space_complexity(Matrix.add), "ADD MATRIX")
+            time_complexity_mat_mat(space_complexity(Matrix.sub), "SUB MATRIX")
+            time_complexity_mat_scal(space_complexity(Matrix.scl), "SCL MATRIX")
 
     except ValueError as e:
         print(e)

@@ -63,12 +63,14 @@ class Vector:
         res = [ i + j for i, j in zip(self.coordinates, v.coordinates) ]
         return Vector(*res)
 
+    @space_complexity
     def sub(self, v: 'Vector'):
         if self.size() != v.size():
             raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Cannot add two vectors of different sizes.")
         res = [ i - j for i, j in zip(self.coordinates, v.coordinates) ]
         return Vector(*res)
 
+    @space_complexity
     def scl(self, scalar):
         res = [i * scalar for i in self.coordinates]
         return Vector(*res)
