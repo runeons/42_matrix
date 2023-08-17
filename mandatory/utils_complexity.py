@@ -55,7 +55,7 @@ def time_complexity_vec_vec(f, title):
         f(v1, v2)
         end_time = time.time_ns()
         execution_time = end_time - start_time
-        res.append((10 ** i, execution_time))
+        res.append((v1.size(), execution_time))
     print_complexity_summary(res)
     
 def time_complexity_mat_mat(f, title):
@@ -70,7 +70,7 @@ def time_complexity_mat_mat(f, title):
         f(m1, m2)
         end_time = time.time_ns()
         execution_time = end_time - start_time
-        res.append((10 ** i, execution_time))
+        res.append((m1.shape()[0] * m1.shape()[1], execution_time))
     print_complexity_summary(res)
 
 def time_complexity_vec_scal(f, title):
@@ -84,7 +84,7 @@ def time_complexity_vec_scal(f, title):
         f(v1, CONSTANT_SCALAR)
         end_time = time.time_ns()
         execution_time = end_time - start_time
-        res.append((10 ** i, execution_time))
+        res.append((v1.size(), execution_time))
     print_complexity_summary(res)
 
 def time_complexity_mat_scal(f, title):
@@ -98,7 +98,7 @@ def time_complexity_mat_scal(f, title):
         f(m1, CONSTANT_SCALAR)
         end_time = time.time_ns()
         execution_time = end_time - start_time
-        res.append((10 ** i, execution_time))
+        res.append((m1.shape()[0] * m1.shape()[1], execution_time))
     print_complexity_summary(res)
 
 def time_complexity_vec_nums(f, title):
@@ -113,7 +113,7 @@ def time_complexity_vec_nums(f, title):
         f(vectors, coefs)
         end_time = time.time_ns()
         execution_time = end_time - start_time
-        res.append((10 ** i, execution_time))
+        res.append((len(vectors), execution_time))
     print_complexity_summary(res)
 
 def time_complexity_vec_vec_float(f, title):
@@ -129,7 +129,7 @@ def time_complexity_vec_vec_float(f, title):
         f(v1, v2, t)
         end_time = time.time_ns()
         execution_time = end_time - start_time
-        res.append((10 ** i, execution_time))
+        res.append((v1.size(), execution_time))
     print_complexity_summary(res)
 
 def time_complexity_mat_mat_float(f, title):
@@ -145,7 +145,7 @@ def time_complexity_mat_mat_float(f, title):
         f(m1, m2, t)
         end_time = time.time_ns()
         execution_time = end_time - start_time
-        res.append((10 ** i, execution_time))
+        res.append((m1.shape()[0] * m1.shape()[1], execution_time))
     print_complexity_summary(res)
 
 def time_complexity_vec(f, title):
@@ -159,7 +159,7 @@ def time_complexity_vec(f, title):
         f(v1)
         end_time = time.time_ns()
         execution_time = end_time - start_time
-        res.append((10 ** i, execution_time))
+        res.append((v1.size(), execution_time))
     print_complexity_summary(res)
     
 def time_complexity_mat_vec(f, title):
@@ -174,7 +174,7 @@ def time_complexity_mat_vec(f, title):
         f(m1, v1)
         end_time = time.time_ns()
         execution_time = end_time - start_time
-        res.append((10 ** i, execution_time))
+        res.append((m1.shape()[0] * m1.shape()[1], execution_time))
     print_complexity_summary(res)
 
 def time_complexity_mat_mul(f, title):
@@ -189,7 +189,7 @@ def time_complexity_mat_mul(f, title):
         f(m1, m2)
         end_time = time.time_ns()
         execution_time = end_time - start_time
-        res.append((10 ** i, execution_time))
+        res.append((m1.shape()[0] * m1.shape()[1], execution_time))
     print_complexity_summary(res)
 
 def time_complexity_sq_mat(f, title):
@@ -203,7 +203,7 @@ def time_complexity_sq_mat(f, title):
         f(m1)
         end_time = time.time_ns()
         execution_time = end_time - start_time
-        res.append((10 ** (i + i), execution_time))
+        res.append((m1.shape()[0] * m1.shape()[1], execution_time))
     print_complexity_summary(res)
 
 def time_complexity_mat(f, title):
@@ -217,7 +217,7 @@ def time_complexity_mat(f, title):
         f(m1)
         end_time = time.time_ns()
         execution_time = end_time - start_time
-        res.append((10 ** i, execution_time))
+        res.append((m1.shape()[0] * m1.shape()[1], execution_time))
     print_complexity_summary(res)
 
 def time_complexity_sq_mat_dim(f, title, max_dim):
