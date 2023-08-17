@@ -289,4 +289,12 @@ class Matrix:
         return m_inverse
     
     def rank(self):
-        return 0
+        m_rre = self.row_echelon()
+        rank = 0
+        (nb_rows, nb_cols) = m_rre.shape()
+        for i in range(nb_rows):
+            for j in range(nb_cols):
+                if (m_rre.rows[i][j] == 1.0):
+                    rank += 1
+                    break
+        return rank
