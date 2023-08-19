@@ -12,7 +12,7 @@ def main():
         Matrix([8., 5., -2., 4., 28.], [4., 2.5, 20., 4., -4.], [8., 5., 1., 4., 17.]).reduced_row_echelon().summary()
 
         if COMPLEXITY == True:
-            time_complexity_mat(space_complexity(Matrix.reduced_row_echelon), "MATRIX REDUCED ROW ECHELON")
+            time_complexity_mat(space_complexity(Matrix.reduced_row_echelon), "MATRIX REDUCED ROW ECHELON t:O(n^3) s:O(n^2)")
 
     except ValueError as e:
         print(e)

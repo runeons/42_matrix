@@ -15,9 +15,9 @@ def main():
             print(f"{v.norm_1()}, {v.norm()}, {v.norm_inf()}")
 
         if COMPLEXITY == True:
-            time_complexity_vec(space_complexity(Vector.norm_1), "VECTOR NORM_1")
-            time_complexity_vec(space_complexity(Vector.norm), "VECTOR NORM_2")
-            time_complexity_vec(space_complexity(Vector.norm_inf), "VECTOR NORM_INF")
+            time_complexity_vec(space_complexity(Vector.norm_1), "VECTOR NORM_1 O(n)")
+            time_complexity_vec(space_complexity(Vector.norm), "VECTOR NORM_2 O(n)")
+            time_complexity_vec(space_complexity(Vector.norm_inf), "VECTOR NORM_INF O(n)")
 
     except ValueError as e:
         print(e)

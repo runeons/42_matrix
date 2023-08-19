@@ -13,7 +13,7 @@ def main():
         Matrix([2., 3., 4.], [4., 6., 8.], [6., 9., 12.], [8., 12., 16.]).transpose().summary()
 
         if COMPLEXITY == True:
-            time_complexity_mat(space_complexity(Matrix.transpose), "MATRIX TRANSPOSE")
+            time_complexity_mat(space_complexity(Matrix.transpose), "MATRIX TRANSPOSE O(nm)")
 
     except ValueError as e:
         print(e)

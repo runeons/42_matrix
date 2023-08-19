@@ -14,7 +14,7 @@ def main():
         print(angle_cos(Vector(1., 2., 3.), Vector(4., 5., 6.)))
 
         if COMPLEXITY == True:
-            time_complexity_vec_vec(space_complexity(angle_cos), "VECTORS COSINE")
+            time_complexity_vec_vec(space_complexity(angle_cos), "VECTORS COSINE O(n)")
 
     except ValueError as e:
         print(e)

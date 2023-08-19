@@ -11,7 +11,7 @@ def main():
         print(Matrix([-2., -8., 4.], [1., -23., 4.], [0., 6., 4.]).trace())
 
         if COMPLEXITY == True:
-            time_complexity_sq_mat(Matrix.trace, "MATRIX TRACE")
+            time_complexity_sq_mat(Matrix.trace, "MATRIX TRACE t:O(n)")
 
     except ValueError as e:
         print(e)

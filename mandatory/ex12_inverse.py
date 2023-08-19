@@ -21,7 +21,7 @@ def main():
 
         try:
             if COMPLEXITY == True:
-                time_complexity_sq_mat_dim(space_complexity(Matrix.inverse), "MATRIX INVERSE", max_dim=6)
+                time_complexity_sq_mat_dim(space_complexity(Matrix.inverse), "MATRIX INVERSE t:O(n^3) s:O(n^2)", max_dim=6)
         except LogicError as e:
                 print(e)
 

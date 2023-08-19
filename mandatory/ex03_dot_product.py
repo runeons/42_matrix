@@ -11,7 +11,7 @@ def main():
         print(Vector(-1., 6.).dot(Vector(3., 2.)))
 
         if COMPLEXITY == True:
-            time_complexity_vec_vec(space_complexity(Vector.dot), "VECTOR dot product")
+            time_complexity_vec_vec(space_complexity(Vector.dot), "VECTOR dot product O(n)")
 
     except ValueError as e:
         print(e)

@@ -12,7 +12,7 @@ def main():
         print(Matrix([ 8., 5., -2.], [ 4., 7., 20.], [ 7., 6., 1.], [21., 18., 7.]).rank())
 
         if COMPLEXITY == True:
-            time_complexity_mat(Matrix.rank, "MATRIX RANK")
+            time_complexity_mat(Matrix.rank, "MATRIX RANK t:O(n^3)")
 
     except ValueError as e:
         print(e)

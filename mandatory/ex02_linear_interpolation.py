@@ -22,8 +22,8 @@ def main():
         lerp(Matrix([2., 1.], [3., 4.]), Matrix([20., 10.], [30., 40.]), 0.5).summary()
 
         if COMPLEXITY == True:
-            time_complexity_vec_vec_float(space_complexity(lerp), "LINEAR INTERPOLATION VECTOR")
-            time_complexity_mat_mat_float(space_complexity(lerp), "LINEAR INTERPOLATION MATRIX")
+            time_complexity_vec_vec_float(space_complexity(lerp), "LINEAR INTERPOLATION VECTOR O(n)")
+            time_complexity_mat_mat_float(space_complexity(lerp), "LINEAR INTERPOLATION MATRIX O(n)")
 
     except ValueError as e:
         print(e)

@@ -17,8 +17,8 @@ def main():
         Matrix([3., -5., ], [6., 8., ]).mul_mat(Matrix([2., 1., ], [4., 2., ])).summary()
 
         if COMPLEXITY == True:
-            time_complexity_mat_vec(space_complexity(Matrix.mul_vec), "MATRIX VECTOR MULTIPLICATION")
-            time_complexity_mat_mul(space_complexity(Matrix.mul_mat), "MATRIX MATRIX MULTIPLICATION")
+            time_complexity_mat_vec(space_complexity(Matrix.mul_vec), "MATRIX VECTOR MULTIPLICATION O(nmp)")
+            time_complexity_mat_mul(space_complexity(Matrix.mul_mat), "MATRIX MATRIX MULTIPLICATION O(nm + mp + np)")
 
     except ValueError as e:
         print(e)

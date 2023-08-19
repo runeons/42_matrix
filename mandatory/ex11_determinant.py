@@ -12,7 +12,7 @@ def main():
         print(Matrix([ 8., 5., -2., 4.], [ 4., 2.5, 20., 4.], [ 8., 5., 1., 4.], [28., -4., 17., 1.]).determinant())
 
         if COMPLEXITY == True:
-            time_complexity_sq_mat_dim(space_complexity(Matrix.determinant), "MATRIX DETERMINANT", max_dim=4)
+            time_complexity_sq_mat_dim(space_complexity(Matrix.determinant), "MATRIX DETERMINANT t:O(n^3) s:O(n^2)", max_dim=4)
 
     except ValueError as e:
         print(e)
