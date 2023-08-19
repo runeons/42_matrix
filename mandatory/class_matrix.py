@@ -150,7 +150,7 @@ class Matrix:
         self.rows[r2_i] = tmp_r1
 
     @space_complexity
-    def row_echelon(self): #new
+    def row_echelon_not_reduced(self): # pivots not reduced to 1 (to find determinant via multiplication)
         ref = Matrix(*self.rows)
         (nb_rows, nb_cols) = ref.shape()
 
@@ -179,7 +179,7 @@ class Matrix:
         return ref
 
     @space_complexity
-    def reduced_row_echelon(self):
+    def row_echelon(self): # pivots reduced to 1 (but not pure reduced - other numbers in pivot column)
         rref = Matrix(*self.rows)
         (nb_rows, nb_cols) = rref.shape()
         pivot = 0
@@ -270,7 +270,7 @@ class Matrix:
             raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Non squared matrix don't have determinant.")
         dim = self.shape()[0]
         if 1:
-            ref = self.row_echelon()
+            ref = self.row_echelon_not_reduced()
             det = 1
             for i in range(ref.shape()[0]):
                 det *= ref.rows[i][i]
@@ -338,7 +338,7 @@ class Matrix:
             raise LogicError(f"{Colors.ERROR}Error: {Colors.RES}Cannot compute inverse of a matrix with a nul determinant.")
         m_id = self._identity()
         m_aug = self._augmented(m_id)
-        m_aug_rref = m_aug.reduced_row_echelon()
+        m_aug_rref = m_aug.row_echelon()
         m_inverse = Matrix(*[[0 for _ in range(self.shape()[0])] for _ in range(self.shape()[1])])
         for i in range(m_inverse.shape()[0]):
             for j in range(m_inverse.shape()[1]):
@@ -361,7 +361,7 @@ class Matrix:
         return m_inverse
     
     def rank(self):
-        m_rre = self.row_echelon()
+        m_rre = self.row_echelon_not_reduced()
         rank = 0
         (nb_rows, nb_cols) = m_rre.shape()
         for i in range(nb_rows):
