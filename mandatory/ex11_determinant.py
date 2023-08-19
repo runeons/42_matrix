@@ -6,6 +6,7 @@ from utils_constants import COMPLEXITY
 def main():
     try:
         print_title(">>>>>>>>>> MATRIX determinant <<<<<<<<<<")
+        print(Matrix([ 3.]).determinant())
         print(Matrix([ 1., -1.], [-1., 1.]).determinant())
         print(Matrix([2., 0., 0.], [0., 2., 0.], [0., 0., 2.]).determinant())
         print(Matrix([8., 5., -2.], [4., 7., 20.], [7., 6., 1.]).determinant())
