@@ -10,7 +10,6 @@ class Matrix:
         try:
             self.rows = [list(row) for row in rows]
             self.check_validity()
-            self.columns = self.get_columns()
         except:
             raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}{[*rows]} is not a valid matrix.")
 
@@ -22,17 +21,6 @@ class Matrix:
             if prev_row_len == 0 or len(row) != prev_row_len:
                 raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}{self.rows} is not a valid matrix.")
             prev_row_len = len(row)
-
-    def get_columns(self):
-        nb_rows, nb_cols = self.shape()
-        all_columns = []
-        for col_index in range(nb_cols):
-            new_column = []
-            for row_index in range(nb_rows):
-                new_column.append(self.rows[row_index][col_index])
-            all_columns.append(new_column)
-        # all_columns = [[self.rows[row_index][col_index] for row_index in range(nb_rows)] for col_index in range(nb_cols)]
-        return all_columns
 
     @space_complexity
     def transpose(self):
