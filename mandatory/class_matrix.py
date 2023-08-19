@@ -139,71 +139,37 @@ class Matrix:
         return x
 
     @space_complexity
-    def row_echelon_not_reduced(self): # pivots not reduced to 1 (to find determinant via multiplication)
+    def row_echelon_not_so_reduced(self): # pivots not reduced to 1 (to find determinant via multiplication)
         ref = Matrix(*self.rows)
         (nb_rows, nb_cols) = ref.shape()
-
         pivot_row = 0
-        pivot_col = 0
-        while pivot_row < nb_rows - 1 and pivot_col < nb_cols - 1:
-            max_val = float('-inf')
-            i_max = 0
+        for pivot_col in range(nb_cols):
+            max_val = 0
+            k = 0
             for i in range(pivot_row, nb_rows):
-                if abs(ref.rows[i][pivot_col]) > max_val:
+                if ref._abs(ref.rows[i][pivot_col]) > max_val:
                     max_val = abs(ref.rows[i][pivot_col])
-                    i_max = i
-            if ref.rows[i_max][pivot_col] == 0:
-                pivot_col += 1
+                    k = i
+            if ref.rows[k][pivot_col] == 0: 
+                continue;
             else:
-                tmp = ref.rows[i_max]
-                ref.rows[i_max] = ref.rows[pivot_row]
-                ref.rows[pivot_row] = tmp
-                for i in range(pivot_row + 1, nb_rows):
+                ref.rows[k], ref.rows[pivot_row] = ref.rows[pivot_row], ref.rows[k]
+                for i in range(pivot_row + 1, nb_rows): # each row UNDERNEATH will be simplified/normalised (pivot doesn't change, hence 'not so reduced')
                     ratio = ref.rows[i][pivot_col] / ref.rows[pivot_row][pivot_col]
-                    ref.rows[i][pivot_col] = 0
-                    for j in range(pivot_col + 1, nb_cols):
+                    for j in range(pivot_col, nb_cols): # each FURTHER value in the row will be simplified/normalised (pivot doesn't change, hence 'not so reduced')
                         ref.rows[i][j] -= ref.rows[pivot_row][j] * ratio
                 pivot_row += 1
-                pivot_col += 1
         return ref
-
-    # @space_complexity
-    # def other_row_echelon(self): # pivots reduced to 1 (but not pure reduced - other numbers in pivot column)
-    #     rref = Matrix(*self.rows)
-    #     (nb_rows, nb_cols) = rref.shape()
-    #     piv_col = 0
-    #     for r in range(nb_rows):
-    #         if nb_cols <= piv_col:
-    #             return rref
-    #         i = r
-    #         while rref.rows[i][piv_col] == 0:
-    #             i += 1
-    #             if nb_rows == i:
-    #                 i = r
-    #                 piv_col += 1
-    #                 if nb_cols == piv_col:
-    #                     return rref
-    #         rref.rows[i], rref.rows[r] = rref.rows[r], rref.rows[i]
-    #         pivot_val = rref.rows[r][piv_col]
-    #         for j in range(nb_cols):
-    #             rref.rows[r][j] /= pivot_val
-    #         for i in range(nb_rows):
-    #             if i != r:
-    #                 pivot_val = rref.rows[i][piv_col]
-    #                 for j in range(nb_cols):
-    #                     rref.rows[i][j] -= pivot_val * rref.rows[r][j]
-    #         piv_col += 1
-    #     return rref
 
     @space_complexity
     def row_echelon(self): # wiki - pivots reduced to 1 (but not pure reduced - other numbers in pivot column)
         ref = Matrix(*self.rows)
         (nb_rows, nb_cols) = ref.shape()
-        r = -1
+        r = 0
         for j in range(nb_cols):
             max_val = 0
-            k = -1
-            for i in range(r + 1, nb_rows):
+            k = -1 
+            for i in range(r, nb_rows):
                 if ref._abs(ref.rows[i][j]) > max_val:
                     max_val = ref._abs(ref.rows[i][j])
                     k = i
@@ -211,7 +177,6 @@ class Matrix:
                 continue
             pivot_val = ref.rows[k][j]
             if pivot_val != 0:
-                r += 1
                 for l in range(j, nb_cols):
                     ref.rows[k][l] /= pivot_val
                 if k != r:
@@ -221,66 +186,18 @@ class Matrix:
                         coef = -ref.rows[i][j]
                         for l in range(j, nb_cols):
                             ref.rows[i][l] += coef * ref.rows[r][l]
+                r += 1
         return ref
-
-    # def _det_dim_2(self, m):
-    #     if not m.is_square() or m.shape()[0] != 2:
-    #         raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Determinant of matrix 2x2.")
-    #     det = m.rows[0][0] * m.rows[1][1] - m.rows[0][1] * m.rows[1][0]
-    #     return det
-
-    # def _det_dim_3(self, m):
-    #     if not m.is_square() or m.shape()[0] != 3:
-    #         raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Determinant of matrix 3x3.")
-    #     a, b, c = m.rows[0]
-    #     d, e, f = m.rows[1]
-    #     g, h, i = m.rows[2]
-    #     det =   a * self._det_dim_2(Matrix([e, f], [h, i])) - \
-    #             b * self._det_dim_2(Matrix([d, f], [g, i])) + \
-    #             c * self._det_dim_2(Matrix([d, e], [g, h]))
-    #     return det
-
-    # def _det_dim_4(self, mat):
-    #         a, b, c, d = mat.rows[0]
-    #         e, f, g, h = mat.rows[1]
-    #         i, j, k, l = mat.rows[2]
-    #         m, n, o, p = mat.rows[3]
-    #         det =   a * self._det_dim_3(Matrix([f, g, h], [j, k, l], [n, o, p])) \
-    #               - b * self._det_dim_3(Matrix([e, g, h], [i, k, l], [m, o, p])) \
-    #               + c * self._det_dim_3(Matrix([e, f, h], [i, j, l], [m, n, p])) \
-    #               - d * self._det_dim_3(Matrix([e, f, g], [i, j, k], [m, n, o]))
-    #         return det
 
     @space_complexity
     def determinant(self):
         if not self.is_square():
             raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Non squared matrix don't have determinant.")
-        ref = self.row_echelon_not_reduced()
+        ref = self.row_echelon_not_so_reduced()
         det = 1
         for i in range(ref.shape()[0]):
             det *= ref.rows[i][i]
         return det
-
-    # def _comatrice(self):
-    #     if not self.is_square():
-    #         raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Non squared matrix don't have comatrix.")
-    #     dim = self.shape()[0]
-    #     if dim == 2:
-    #         a, b = self.rows[0]
-    #         c, d = self.rows[1]
-    #         com = Matrix([d, -c], [-b, a])
-    #         return com
-    #     elif dim == 3:
-    #         a, b, c = self.rows[0]
-    #         d, e, f = self.rows[1]
-    #         g, h, i = self.rows[2]
-    #         com = Matrix(
-    #             [+self._det_dim_2(Matrix([e, f], [h, i])), -self._det_dim_2(Matrix([d, f], [g, i])), +self._det_dim_2(Matrix([d, e], [g, h]))], 
-    #             [-self._det_dim_2(Matrix([b, c], [h, i])), +self._det_dim_2(Matrix([a, c], [g, i])), -self._det_dim_2(Matrix([a, b], [g, h]))], 
-    #             [+self._det_dim_2(Matrix([b, c], [e, f])), -self._det_dim_2(Matrix([a, c], [d, f])), +self._det_dim_2(Matrix([a, b], [d, e]))]
-    #         )
-    #         return com
-    #     raise LogicError(f"{Colors.ERROR}Error: {Colors.RES}Comatrix for matrices of dimensions higher than 3 not implemented.")
 
     def _identity(self):
         if not self.is_square():
@@ -320,23 +237,8 @@ class Matrix:
                 m_inverse.rows[i][j] = m_aug_rref.rows[i][j + m_inverse.shape()[1]]
         return m_inverse
     
-    # @space_complexity
-    # def dcode_inverse(self):
-    #     if not self.is_square():
-    #         raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Non squared matrix don't have absolute inverse.")
-    #     det = self.determinant()
-    #     if det == 0:
-    #         raise LogicError(f"{Colors.ERROR}Error: {Colors.RES}Cannot compute inverse of a matrix with a nul determinant.")
-    #     dim = self.shape()[0]
-    #     if dim == 1:
-    #         return Matrix([1/self.rows[0][0]])
-    #     m_comatrice = self._comatrice()
-    #     m_complementaire = m_comatrice.transpose()
-    #     m_inverse = m_complementaire * (1 / det)
-    #     return m_inverse
-    
     def rank(self):
-        m_rre = self.row_echelon_not_reduced()
+        m_rre = self.row_echelon()
         rank = 0
         (nb_rows, nb_cols) = m_rre.shape()
         for i in range(nb_rows):
