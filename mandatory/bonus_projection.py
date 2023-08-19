@@ -3,13 +3,13 @@ from utils_colors import Colors
 from class_matrix import Matrix
 
 def projection(fov, ratio, near, far):
-    if (far - near == 0):
-        raise ValueError(f"{Colors.ERROR}Error: {Colors.RES} far and near planes can't be equal.")
+    if (far <= near):
+        raise ValueError(f"{Colors.ERROR}Error: {Colors.RES} far must be behind near.")
+    fov = fov * 3.141592653589793 / 180
     x = ratio * (1 / math.tan(fov / 2))
     y = 1 / math.tan(fov / 2)
     z = far / (far - near)
     w = -near * (far / (far  - near))
-
     P = Matrix(
         [x, 0., 0., 0.],
         [0., y, 0., 0.],
