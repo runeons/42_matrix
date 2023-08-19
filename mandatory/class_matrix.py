@@ -141,15 +141,13 @@ class Matrix:
         return Matrix(*res_coords)
 
     def trace(self):
-        if self.shape()[0] != self.shape()[1]:
+        if not self.is_square():
             raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Cannot perform matrix trace on non squared matrix.")
         trace = 0.
-        for c in range(self.shape()[0]):
-            for r in range(self.shape()[1]):
-                if (c == r):
-                    trace += self.rows[c][r]
+        for i in range(self.shape()[0]):
+            trace += self.rows[i][i]
         return trace
-    
+
     def _abs(self, x):
         if x < 0:
             return -x
