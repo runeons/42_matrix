@@ -8,6 +8,8 @@ def main():
         P.summary()
         to_file(P)
 
+    except FileNotFoundError as e:
+        print(e)
     except ZeroDivisionError as e:
         print(e)
     except ValueError as e:
