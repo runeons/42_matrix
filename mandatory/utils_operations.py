@@ -10,8 +10,9 @@ def reshape(x):
         return Matrix(x.coordinates)
     elif isinstance(x, Matrix):
         v = []
-        for c in x.columns:
-            v.extend(c)
+        for j in range(x.shape()[1]):
+            for i in range(x.shape()[0]):
+                v.append(x.rows[i][j])
         return Vector(*v)
 
 def matrix_from_shape(rows, cols, fill_with=None):
