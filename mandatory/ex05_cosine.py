@@ -19,9 +19,9 @@ def evaluation_cos():
         res = angle_cos(v1, v2)
         expected = t[2]
         if (res == expected):   
-            print_OK(f"{v1} norm == {res} == {expected}")
+            print_OK(f"{v1} and {v2} cosine == {res} == {expected}")
         else:
-            print_KO(f"{v1} norm == {res} != {expected}")
+            print_KO(f"{v1} and {v2} cosine == {res} != {expected}")
 
 def main():
     try:

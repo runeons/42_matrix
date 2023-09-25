@@ -21,9 +21,9 @@ def evaluation_cross():
         res = cross_product(v1, v2)
         expected = Vector(t[2])
         if (res == expected):   
-            print_OK(f"{v1} norm == {res} == {expected}")
+            print_OK(f"cross_product {v1} and {v2} == {res} == {expected}")
         else:
-            print_KO(f"{v1} norm == {res} != {expected}")
+            print_KO(f"cross_product {v1} and {v2} == {res} != {expected}")
 
 def main():
     try:
