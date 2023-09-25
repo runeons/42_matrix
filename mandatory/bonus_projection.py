@@ -10,12 +10,12 @@ def projection(fov, ratio, near, far):
     y = 1 / math.tan(fov / 2)
     z = far / (far - near)
     w = -near * (far / (far  - near))
-    P = Matrix(
+    P = Matrix([
         [x, 0., 0., 0.],
         [0., y, 0., 0.],
         [0., 0., z / w, -1.],
         [0., 0., 1., 0.],
-    )
+    ])
     return P
 
 def to_string(m: Matrix):
