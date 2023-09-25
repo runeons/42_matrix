@@ -1,5 +1,5 @@
 from class_matrix import Matrix, LogicError
-from utils_display import print_title, space_complexity
+from utils_display import print_title, print_OK, print_KO, space_complexity
 from utils_complexity import time_complexity_sq_mat
 from utils_constants import COMPLEXITY
 

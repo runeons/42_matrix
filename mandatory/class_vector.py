@@ -50,14 +50,14 @@ class Vector:
     def __add__(self, v):
         if isinstance(v, Vector) and self.size() == v.size():
             res = [x1 + x2 for x1, x2 in zip(self.coordinates, v.coordinates)]
-            return Vector(*res)
+            return Vector([*res])
         else:
             raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Vectors should have the same dimension to use operator +.")
 
     def __sub__(self, v):
         if isinstance(v, Vector) and self.size() == v.size():
             res = [x1 - x2 for x1, x2 in zip(self.coordinates, v.coordinates)]
-            return Vector(*res)
+            return Vector([*res])
         else:
             raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Vectors should have the same dimension to use operator -.")
 

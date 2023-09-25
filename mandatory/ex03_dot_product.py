@@ -1,5 +1,5 @@
 from class_vector import Vector
-from utils_display import print_title, space_complexity
+from utils_display import print_title, print_OK, print_KO, space_complexity
 from utils_complexity import time_complexity_vec_vec
 from utils_constants import COMPLEXITY
 
