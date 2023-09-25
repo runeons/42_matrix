@@ -6,6 +6,114 @@ from utils_operations import reshape
 from utils_complexity import time_complexity_vec_vec, time_complexity_mat_mat, time_complexity_vec_scal, time_complexity_mat_scal
 from utils_constants import COMPLEXITY
 
+def evaluation_add():
+    print_title(">>>>>>>>>> EVALUATION add <<<<<<<<<<")
+    v_tests = [
+        (([0, 0], [0, 0]), [0, 0]),
+        (([1, 0], [0, 1]), [1, 1]),
+        (([1, 1], [1, 1]), [2, 2]),
+        (([21, 21], [21, 21]), [42, 42]),
+        (([-21, 21], [21, -21]), [0, 0]),
+        (([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]), [9, 9, 9, 9, 9, 9, 9, 9, 9, 9]),
+    ]
+    for t in v_tests:
+        v1 = Vector(t[0][0])
+        v2 = Vector(t[0][1])
+        expected = Vector(t[1])
+        res = v1.add(v2)
+        if (res == expected):   
+            print_OK(f"{v1} + {v2} == {res}")
+        else:
+            print_KO(f"{v1} + {v2} == {res} != {expected}")
+
+    m_tests = [
+        (([[0, 0], [0, 0]], [[0, 0], [0, 0]]), [[0, 0], [0, 0]]),
+        (([[1, 0], [0, 1]], [[0, 0], [0, 0]]), [[1, 0], [0, 1]]),
+        (([[1, 1], [1, 1]], [[1, 1], [1, 1]]), [[2, 2], [2, 2]]),
+        (([[21, 21], [21, 21]], [[21, 21], [21, 21]]), [[42, 42], [42, 42]]),
+    ]
+    for t in m_tests:
+        m1 = Matrix(t[0][0])
+        m2 = Matrix(t[0][1])
+        expected = Matrix(t[1])
+        res = m1.add(m2)
+        if (res == expected):   
+            print_OK(f"{m1} + {m2} == {res} == {expected}")
+        else:
+            print_KO(f"{m1} + {m2} == {res} != {expected}")
+
+def evaluation_sub():
+    print_title(">>>>>>>>>> EVALUATION sub <<<<<<<<<<")
+    v_tests = [
+        (([0, 0], [0, 0]), [0, 0]),
+        (([1, 0], [0, 1]), [1, -1]),
+        (([1, 1], [1, 1]), [0, 0]),
+        (([21, 21], [21, 21]), [0, 0]),
+        (([-21, 21], [21, -21]), [-42, 0]),
+        (([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]), [-9, -7, -5, -3, -1, 1, 3, 5, 7, 9]),
+    ]
+    for t in v_tests:
+        v1 = Vector(t[0][0])
+        v2 = Vector(t[0][1])
+        expected = Vector(t[1])
+        res = v1.sub(v2)
+        if (res == expected):   
+            print_OK(f"{v1} - {v2} == {res} == {expected}")
+        else:
+            print_KO(f"{v1} - {v2} == {res} != {expected}")
+
+    m_tests = [
+        (([[0, 0], [0, 0]], [[0, 0], [0, 0]]), [[0, 0], [0, 0]]),
+        (([[1, 0], [0, 1]], [[0, 0], [0, 0]]), [[1, 0], [0, 1]]),
+        (([[1, 1], [1, 1]], [[1, 1], [1, 1]]), [[0, 0], [0, 0]]),
+        (([[21, 21], [21, 21]], [[21, 21], [21, 21]]), [[0, 0], [0, 0]]),
+    ]
+    for t in m_tests:
+        m1 = Matrix(t[0][0])
+        m2 = Matrix(t[0][1])
+        expected = Matrix(t[1])
+        res = m1.sub(m2)
+        if (res == expected):   
+            print_OK(f"{m1} - {m2} == {res} == {expected}")
+        else:
+            print_KO(f"{m1} - {m2} == {res} != {expected}")
+
+
+def evaluation_scl():
+    print_title(">>>>>>>>>> EVALUATION scl <<<<<<<<<<")
+    v_tests = [
+        (([0, 0], 1), [0, 0]),
+        (([1, 0], 1), [1, 0]),
+        (([1, 1], 2), [2, 2]),
+        (([21, 21], 2), [42, 42]),
+        (([42, 42], 0.5), [21, 21]),
+    ]
+    for t in v_tests:
+        v1 = Vector(t[0][0])
+        scalar = t[0][1]
+        expected = Vector(t[1])
+        res = v1.scl(scalar)
+        if (res == expected):   
+            print_OK(f"{v1} * {scalar} == {res} == {expected}")
+        else:
+            print_KO(f"{v1} * {scalar} == {res} != {expected}")
+
+    m_tests = [
+        (([[0, 0], [0, 0]], 0), [[0, 0], [0, 0]]),
+        (([[1, 0], [0, 1]], 1), [[1, 0], [0, 1]]),
+        (([[1, 2], [3, 4]], 2), [[2, 4], [6, 8]]),
+        (([[21, 21], [21, 21]], 0.5), [[10.5, 10.5], [10.5, 10.5]]),
+    ]
+    for t in m_tests:
+        m1 = Matrix(t[0][0])
+        scalar = t[0][1]
+        expected = Matrix(t[1])
+        res = m1.scl(scalar)
+        if (res == expected):   
+            print_OK(f"{m1} * {scalar} == {res} == {expected}")
+        else:
+            print_KO(f"{m1} * {scalar} == {res} != {expected}")
+
 def main():
     try:
         tests_not_valid = [
@@ -50,11 +158,11 @@ def main():
         v2 = Vector([5., 7.])
         v1.summary()
         v2.summary()
-        print_title("ADD two vectors")
+        print_title(f"ADD two vectors: {v1} + {v2}")
         v1.add(v2).summary()
-        print_title("SUB two vectors")
+        print_title(f"SUB two vectors: {v1} + {v2}")
         v1.sub(v2).summary()
-        print_title("SCALE vector")
+        print_title(f"SCALE vector: {v1} * 2")
         v1.scl(2.).summary()
 
         print_title(">>>>>>>>>> OPERATIONS between matrices <<<<<<<<<<")
@@ -63,117 +171,16 @@ def main():
         m2 = Matrix([[7., 4.], [-2., 2]])
         m1.summary()
         m2.summary()
-        print_title("ADD two matrices")
+        print_title(f"ADD two matrices: {m1} + {m2}")
         m1.add(m2).summary()
-        print_title("SUB two matrices")
+        print_title(f"SUB two matrices: {m1} + {m2}")
         m1.sub(m2).summary()
-        print_title("SCALE matrix")
+        print_title(f"SCALE matrix: {m1} * 2")
         m1.scl(2.).summary()
 
-        print_title(">>>>>>>>>> EVALUATION add <<<<<<<<<<")
-        v_tests = [
-            (([0, 0], [0, 0]), [0, 0]),
-            (([1, 0], [0, 1]), [1, 1]),
-            (([1, 1], [1, 1]), [2, 2]),
-            (([21, 21], [21, 21]), [42, 42]),
-            (([-21, 21], [21, -21]), [0, 0]),
-            (([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]), [9, 9, 9, 9, 9, 9, 9, 9, 9, 9]),
-        ]
-        for t in v_tests:
-            v1 = Vector(t[0][0])
-            v2 = Vector(t[0][1])
-            expected = Vector(t[1])
-            res = v1.add(v2)
-            if (res == expected):   
-                print_OK(f"{v1} + {v2} == {res}")
-            else:
-                print_KO(f"{v1} + {v2} == {res} != {expected}")
-
-        m_tests = [
-            (([[0, 0], [0, 0]], [[0, 0], [0, 0]]), [[0, 0], [0, 0]]),
-            (([[1, 0], [0, 1]], [[0, 0], [0, 0]]), [[1, 0], [0, 1]]),
-            (([[1, 1], [1, 1]], [[1, 1], [1, 1]]), [[2, 2], [2, 2]]),
-            (([[21, 21], [21, 21]], [[21, 21], [21, 21]]), [[42, 42], [42, 42]]),
-        ]
-        for t in m_tests:
-            m1 = Matrix(t[0][0])
-            m2 = Matrix(t[0][1])
-            expected = Matrix(t[1])
-            res = m1.add(m2)
-            if (res == expected):   
-                print_OK(f"{m1} + {m2} == {res} == {expected}")
-            else:
-                print_KO(f"{m1} + {m2} == {res} != {expected}")
-
-        print_title(">>>>>>>>>> EVALUATION sub <<<<<<<<<<")
-        v_tests = [
-            (([0, 0], [0, 0]), [0, 0]),
-            (([1, 0], [0, 1]), [1, -1]),
-            (([1, 1], [1, 1]), [0, 0]),
-            (([21, 21], [21, 21]), [0, 0]),
-            (([-21, 21], [21, -21]), [-42, 0]),
-            (([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]), [-9, -7, -5, -3, -1, 1, 3, 5, 7, 9]),
-        ]
-        for t in v_tests:
-            v1 = Vector(t[0][0])
-            v2 = Vector(t[0][1])
-            expected = Vector(t[1])
-            res = v1.sub(v2)
-            if (res == expected):   
-                print_OK(f"{v1} - {v2} == {res} == {expected}")
-            else:
-                print_KO(f"{v1} - {v2} == {res} != {expected}")
-
-        m_tests = [
-            (([[0, 0], [0, 0]], [[0, 0], [0, 0]]), [[0, 0], [0, 0]]),
-            (([[1, 0], [0, 1]], [[0, 0], [0, 0]]), [[1, 0], [0, 1]]),
-            (([[1, 1], [1, 1]], [[1, 1], [1, 1]]), [[0, 0], [0, 0]]),
-            (([[21, 21], [21, 21]], [[21, 21], [21, 21]]), [[0, 0], [0, 0]]),
-        ]
-        for t in m_tests:
-            m1 = Matrix(t[0][0])
-            m2 = Matrix(t[0][1])
-            expected = Matrix(t[1])
-            res = m1.sub(m2)
-            if (res == expected):   
-                print_OK(f"{m1} - {m2} == {res} == {expected}")
-            else:
-                print_KO(f"{m1} - {m2} == {res} != {expected}")
-
-        print_title(">>>>>>>>>> EVALUATION scl <<<<<<<<<<")
-        v_tests = [
-            (([0, 0], 1), [0, 0]),
-            (([1, 0], 1), [1, 0]),
-            (([1, 1], 2), [2, 2]),
-            (([21, 21], 2), [42, 42]),
-            (([42, 42], 0.5), [21, 21]),
-        ]
-        for t in v_tests:
-            v1 = Vector(t[0][0])
-            scalar = t[0][1]
-            expected = Vector(t[1])
-            res = v1.scl(scalar)
-            if (res == expected):   
-                print_OK(f"{v1} * {scalar} == {res} == {expected}")
-            else:
-                print_KO(f"{v1} * {scalar} == {res} != {expected}")
-
-        m_tests = [
-            (([[0, 0], [0, 0]], 0), [[0, 0], [0, 0]]),
-            (([[1, 0], [0, 1]], 1), [[1, 0], [0, 1]]),
-            (([[1, 2], [3, 4]], 2), [[2, 4], [6, 8]]),
-            (([[21, 21], [21, 21]], 0.5), [[10.5, 10.5], [10.5, 10.5]]),
-        ]
-        for t in m_tests:
-            m1 = Matrix(t[0][0])
-            scalar = t[0][1]
-            expected = Matrix(t[1])
-            res = m1.scl(scalar)
-            if (res == expected):   
-                print_OK(f"{m1} * {scalar} == {res} == {expected}")
-            else:
-                print_KO(f"{m1} * {scalar} == {res} != {expected}")
-
+        evaluation_add()
+        evaluation_sub()
+        evaluation_scl()
 
         if COMPLEXITY == True:
             print_title(">>>>>>>>>> BASIC OPERATIONS complexity <<<<<<<<<<")
