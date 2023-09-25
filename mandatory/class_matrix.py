@@ -6,7 +6,7 @@ class LogicError(Exception):
     "Raised when we try to calculate the inverse of a matrix with a 0 determinant"
 
 class Matrix:
-    def __init__(self, *rows):
+    def __init__(self, rows):
         try:
             self.rows = [list(row) for row in rows]
             self.check_validity()
@@ -26,9 +26,25 @@ class Matrix:
     def transpose(self):
         nb_rows, nb_cols = self.shape()
         all_columns = [[self.rows[row_index][col_index] for row_index in range(nb_rows)] for col_index in range(nb_cols)]
-        return Matrix(*all_columns)
+        return Matrix([*all_columns])
 
     def __str__(self):
+        return(str(self.rows))
+        # s = f"{Colors.MATRIX}MATRIX:{Colors.RES}\n"
+        # max_width = max([max(len(str(coord)) for coord in row) for row in self.rows])
+        # for i, row in enumerate(self.rows):
+        #     s += "[ "
+        #     for j, coord in enumerate(row):
+        #         s += f"{coord:<{max_width}}"
+        #         if j != len(row) - 1:
+        #             s += ", "
+        #     s += " ]"
+        #     if i != len(self.rows) - 1:
+        #         s += "\n"
+        # return s
+    
+    def summary(self):
+        # print(self)
         s = f"{Colors.MATRIX}MATRIX:{Colors.RES}\n"
         max_width = max([max(len(str(coord)) for coord in row) for row in self.rows])
         for i, row in enumerate(self.rows):
@@ -40,25 +56,32 @@ class Matrix:
             s += " ]"
             if i != len(self.rows) - 1:
                 s += "\n"
-        return s
-    
-    def summary(self):
-        print(self)
+        # return s
+        print(s)
         print(f"{Colors.MATRIX}shape: {Colors.RES}{self.shape()}")
         print(f"{Colors.MATRIX}square: {Colors.RES}{self.is_square()}")
         print()
 
+    def __eq__(self, v):
+        if isinstance(v, Matrix):
+            if (self.rows == v.rows):
+                return True
+            else:
+                return False
+        else:
+            raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}cannot compare Matrix with non-Matrix.")
+        
     def __add__(self, m):
         if isinstance(m, Matrix) and self.shape() == m.shape():
             res = [[x1 + x2 for x1, x2 in zip(rows_self, rows_m)] for rows_self, rows_m in zip(self.rows, m.rows)]
-            return Matrix(*res)
+            return Matrix([*res])
         else:
             raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Matrices should have the same dimension to use operator +.")
 
     def __sub__(self, m):
         if isinstance(m, Matrix) and self.shape() == m.shape():
             res = [[x1 - x2 for x1, x2 in zip(rows_self, rows_m)] for rows_self, rows_m in zip(self.rows, m.rows)]
-            return Matrix(*res)
+            return Matrix([*res])
         else:
             raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Matrices should have the same dimension to use operator -.")
 
@@ -87,17 +110,17 @@ class Matrix:
         if self.shape() != m.shape():
             raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Cannot add two matrices of different sizes.")
         res = [[c + d for c, d in zip(r, s)] for r, s in zip(self.rows, m.rows)]
-        return Matrix(*res)
+        return Matrix([*res])
 
     def sub(self, m: 'Matrix'):
         if self.shape() != m.shape():
             raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Cannot add two matrices of different sizes.")
         res = [[c - d for c, d in zip(r, s)] for r, s in zip(self.rows, m.rows)]
-        return Matrix(*res)
+        return Matrix([*res])
 
     def scl(self, scalar):
         res = [[c * float(scalar) for c in row] for row in self.rows]
-        return Matrix(*res)
+        return Matrix([*res])
 
     @space_complexity
     def mul_vec(self, v):
@@ -109,7 +132,7 @@ class Matrix:
         for i in range(new_nb_rows):
             for j in range(dim):
                 res_coords[i] += self.rows[i][j] * v.coordinates[j]
-        return Vector(*res_coords)
+        return Vector([*res_coords])
 
     @space_complexity
     def mul_mat(self, m):
@@ -123,7 +146,7 @@ class Matrix:
             for r in range(res_nb_rows):
                 for i in range(dim):
                     res_coords[r][c] += self.rows[r][i] * m.rows[i][c]
-        return Matrix(*res_coords)
+        return Matrix([*res_coords])
 
     def trace(self):
         if not self.is_square():
@@ -204,7 +227,7 @@ class Matrix:
             raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Non squared matrix don't have a corresponding identity matrix.")
         dim = self.shape()[0]
         params = [[1 if i==j else 0 for j in range(dim)] for i in range(dim)]
-        return Matrix(*params)
+        return Matrix([*params])
 
     def _augmented(self, m):
         if self.shape() != m.shape():
@@ -219,7 +242,7 @@ class Matrix:
                     params[i][j] = self.rows[i][j]
                 else:
                     params[i][j] = m.rows[i][j - half]
-        return Matrix(*params)
+        return Matrix([*params])
 
     @space_complexity
     def inverse(self):
