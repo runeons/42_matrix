@@ -22,7 +22,7 @@ def evaluation_add():
         expected = Vector(t[1])
         res = v1.add(v2)
         if (res == expected):   
-            print_OK(f"{v1} + {v2} == {res}")
+            print_OK(f"{v1} + {v2} == {res} == {expected}")
         else:
             print_KO(f"{v1} + {v2} == {res} != {expected}")
 
