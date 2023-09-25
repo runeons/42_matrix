@@ -254,7 +254,7 @@ class Matrix:
         m_id = self._identity()
         m_aug = self._augmented(m_id)
         m_aug_rref = m_aug.row_echelon()
-        m_inverse = Matrix(*[[0 for _ in range(self.shape()[0])] for _ in range(self.shape()[1])])
+        m_inverse = Matrix([*[[0 for _ in range(self.shape()[0])] for _ in range(self.shape()[1])]])
         for i in range(m_inverse.shape()[0]):
             for j in range(m_inverse.shape()[1]):
                 m_inverse.rows[i][j] = m_aug_rref.rows[i][j + m_inverse.shape()[1]]
