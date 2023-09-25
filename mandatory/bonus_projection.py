@@ -30,6 +30,6 @@ def to_string(m: Matrix):
     
 def to_file(m: Matrix):
     s = to_string(m)
-    f = open("display_macos/proj", "w+")
+    f = open("matrix_display/proj", "w+")
     f.write(s)
     f.close()

@@ -4,7 +4,7 @@ from bonus_projection import projection, to_file
 def main():
     try:
         print_title(">>>>>>>>>> PROJECTION  <<<<<<<<<<")
-        P = projection(100, 9/9, 10, 1000)
+        P = projection(100, 16/9, 100, 1000) # fov, ratio, near, far
         P.summary()
         to_file(P)
 
