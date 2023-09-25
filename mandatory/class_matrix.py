@@ -163,7 +163,7 @@ class Matrix:
 
     @space_complexity
     def row_echelon_not_so_reduced(self): # pivots not reduced to 1 (to find determinant via multiplication)
-        ref = Matrix(*self.rows)
+        ref = Matrix([*self.rows])
         (nb_rows, nb_cols) = ref.shape()
         pivot_row = 0
         for pivot_col in range(nb_cols):
@@ -186,7 +186,7 @@ class Matrix:
 
     @space_complexity
     def row_echelon(self): # wiki - pivots reduced to 1 (but not pure reduced - other numbers in pivot column)
-        ref = Matrix(*self.rows)
+        ref = Matrix([*self.rows])
         (nb_rows, nb_cols) = ref.shape()
         r = 0
         for j in range(nb_cols):
