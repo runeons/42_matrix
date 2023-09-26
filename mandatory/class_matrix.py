@@ -172,7 +172,7 @@ class Matrix:
             k = 0
             for i in range(pivot_row, nb_rows):
                 if ref._abs(ref.rows[i][pivot_col]) > max_val:
-                    max_val = abs(ref.rows[i][pivot_col])
+                    max_val = ref._abs(ref.rows[i][pivot_col])
                     k = i
             if ref.rows[k][pivot_col] == 0: 
                 continue;
