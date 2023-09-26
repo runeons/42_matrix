@@ -2,7 +2,7 @@ from utils_colors import Colors
 from class_matrix import Matrix
 from class_vector import Vector
 from utils_display import print_title, print_OK, print_KO, space_complexity
-from utils_operations import reshape, linear_combination
+from utils_operations import reshape, linear_combination, lerp
 from utils_complexity import time_complexity_vec_vec, time_complexity_mat_mat, time_complexity_vec_scal, time_complexity_mat_scal
 from utils_constants import COMPLEXITY
 import numpy as np
@@ -108,12 +108,26 @@ def complex_lc():
         else:
             print_KO(f"{res} != {expected}")
 
+def complex_lerp():
+    print_title(">>>>>>>>>> COMPLEX linear interpolation <<<<<<<<<<")
+    tests = [
+        (0+3j, 42j, 0.5),
+    ]
+    for t in tests:
+        res = lerp(t[0], t[1], t[2])
+        expected = np.interp(t[2], [0, 1], [t[1], t[0]])
+        if (res == expected):   
+            print_OK(f"lerp({t[0]})== {res} == {expected}")
+        else:
+            print_KO(f"lerp({t[0]})== {res} != {expected}")
+
 def main():
     try:
         complex_add()
         complex_sub()
         complex_scl()
         complex_lc()
+        complex_lerp()
 
     except ValueError as e:
         print(e)
