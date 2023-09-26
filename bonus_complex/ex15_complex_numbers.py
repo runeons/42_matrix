@@ -10,9 +10,9 @@ import numpy as np
 def complex_add():
     print_title(">>>>>>>>>> COMPLEX add <<<<<<<<<<")
     v_tests = [
-        ([5, 3], [4, 2]),
+        ([5, 3], [4, 2j]),
         ([5, 3, 2], [4, 2, 1]),
-        ([3, 1], [-1, 2]),
+        ([3, 1j], [-1, 2j]),
     ]
     for t in v_tests:
         v1 = Vector(t[0])
@@ -25,7 +25,7 @@ def complex_add():
             print_KO(f"{v1} + {v2} == {res} != {expected}")
 
     m_tests = [
-        ([[1, 2], [3, 4]], [[2, 3], [4, 5]]),
+        ([[1j, 2], [3, 4]], [[2, 3j], [4, 5]]),
     ]
     for t in m_tests:
         m1 = Matrix(t[0])
@@ -68,7 +68,7 @@ def complex_sub():
 def complex_scl():
     print_title(">>>>>>>>>> COMPLEX scl <<<<<<<<<<")
     v_tests = [
-        ([2, 4], 2),
+        ([2, 4j], 2),
     ]
     for t in v_tests:
         v1 = Vector(t[0])
@@ -81,7 +81,7 @@ def complex_scl():
             print_KO(f"{v1} * {scalar} == {res} != {expected}")
 
     m_tests = [
-        ([[1, 2], [3, 4]], 2),
+        ([[1, 2], [3j, 4]], 2),
     ]
     for t in m_tests:
         m1 = Matrix(t[0])
@@ -96,7 +96,7 @@ def complex_scl():
 def complex_lc():
     print_title(">>>>>>>>>> COMPLEX linear combination <<<<<<<<<<")
     v_tests = [
-        ([Vector([1., 2.]), Vector([1., 3.])], [4., 2.]),
+        ([Vector([1., 2.]), Vector([1., 3j])], [4 + 1j, 2.]),
     ]
     for t in v_tests:
         vectors = t[0]
@@ -121,6 +121,21 @@ def complex_lerp():
         else:
             print_KO(f"lerp({t[0]})== {res} != {expected}")
 
+def complex_dot():
+    print_title(">>>>>>>>>> COMPLEX dot product <<<<<<<<<<")
+    tests = [
+        ([3, 4], [-4j + 2, 3j]),
+    ]
+    for t in tests:
+        v1 = Vector(t[0])
+        v2 = Vector(t[1])
+        expected = np.dot(np.array(v1.coordinates), np.array(v2.coordinates))
+        res = v1.dot(v2)
+        if (res == expected):   
+            print_OK(f"{v1} dot {v2} == {res} == {expected}")
+        else:
+            print_KO(f"{v1} dot {v2} == {res} != {expected}")
+
 def main():
     try:
         complex_add()
@@ -128,6 +143,7 @@ def main():
         complex_scl()
         complex_lc()
         complex_lerp()
+        complex_dot()
 
     except ValueError as e:
         print(e)
