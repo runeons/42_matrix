@@ -5,7 +5,7 @@ from utils_constants import COMPLEXITY
 
 # c’est le nombre de dimensions après transformation
 
-def evaluation_inverse():
+def evaluation_rank():
     print_title(">>>>>>>>>> EVALUATION rank <<<<<<<<<<")
     tests = [
         ([[0, 0], [0, 0]], 0),
@@ -34,7 +34,7 @@ def main():
         print(Matrix([[ 1., 2., 0., 0.], [ 2., 4., 0., 0.], [-1., 2., 1., 1.]]).rank())
         print(Matrix([[ 8., 5., -2.], [ 4., 7., 20.], [ 7., 6., 1.], [21., 18., 7.]]).rank())
 
-        evaluation_inverse()
+        evaluation_rank()
         
         if COMPLEXITY == True:
             time_complexity_mat(Matrix.rank, "MATRIX RANK t:O(n^3)")

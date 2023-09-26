@@ -6,6 +6,7 @@ from utils_operations import reshape, linear_combination, lerp, angle_cos, cross
 from utils_complexity import time_complexity_vec_vec, time_complexity_mat_mat, time_complexity_vec_scal, time_complexity_mat_scal
 from utils_constants import COMPLEXITY
 import numpy as np
+from sympy import Matrix as sym_matrix
 
 def complex_add():
     print_title(">>>>>>>>>> COMPLEX add <<<<<<<<<<")
@@ -253,6 +254,63 @@ def complex_transpose():
         else:
             print_KO(f"{m1} transpose == {res} != {expected}")
 
+def complex_row_echelon():
+    print_title(">>>>>>>>>> COMPLEX row_echelon <<<<<<<<<<")
+    tests = [
+      ([[1, 2j], [4, 8j]], [[1 + 2j, 2], [0, 0]]),
+    ]
+    for t in tests:
+        m1 = Matrix(t[0])
+        res = m1.row_echelon()
+        expected = sym_matrix(m1.rows).rref()
+        print("expected:", expected)
+        print("res:", res)
+        # if (res == expected):   
+        #     print_OK(f"{m1} row_echelon == {res} == {expected}")
+        # else:
+        #     print_KO(f"{m1} row_echelon == {res} != {expected}")
+
+def complex_determinant():
+    print_title(">>>>>>>>>> COMPLEX determinant <<<<<<<<<<")
+    tests = [
+        ([[1, 2j], [1 +3j, 0]]),
+    ]
+    for t in tests:
+        m1 = Matrix(t)
+        res = m1.determinant()
+        expected = np.linalg.det(m1.rows)
+        if (res == expected):   
+            print_OK(f"{m1} determinant == {res} == {expected}")
+        else:
+            print_KO(f"{m1} determinant == {res} != {expected}")
+
+def complex_inverse():
+    print_title(">>>>>>>>>> COMPLEX inverse <<<<<<<<<<")
+    tests = [
+        ([[2 + 2j, 0], [0, 2]]),
+    ]
+    for t in tests:
+        m1 = Matrix(t)
+        res = m1.inverse()
+        expected = np.linalg.inv(m1.rows)
+        if (res == expected):   
+            print_OK(f"{m1} inverse == {res} == {expected}")
+        else:
+            print_KO(f"{m1} inverse == {res} != {expected}")
+
+def complex_rank():
+    print_title(">>>>>>>>>> COMPLEX rank <<<<<<<<<<")
+    tests = [
+        ([[2j, 2], [3, 4 +2j]], 2),
+    ]
+    for t in tests:
+        m1 = Matrix(t[0])
+        res = m1.rank()
+        expected = np.linalg.matrix_rank(m1.rows)
+        if (res == expected):   
+            print_OK(f"{m1} rank == {res} == {expected}")
+        else:
+            print_KO(f"{m1} rank == {res} != {expected}")
 
 def main():
     try:
@@ -269,6 +327,10 @@ def main():
         complex_mat_mat_mult()
         complex_trace()
         complex_transpose()
+        complex_row_echelon()
+        complex_determinant()
+        complex_inverse()
+        complex_rank()
 
     except ValueError as e:
         print(e)
