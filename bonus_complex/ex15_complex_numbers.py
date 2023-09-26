@@ -2,7 +2,7 @@ from utils_colors import Colors
 from class_matrix import Matrix
 from class_vector import Vector
 from utils_display import print_title, print_OK, print_KO, space_complexity
-from utils_operations import reshape, linear_combination, lerp
+from utils_operations import reshape, linear_combination, lerp, angle_cos
 from utils_complexity import time_complexity_vec_vec, time_complexity_mat_mat, time_complexity_vec_scal, time_complexity_mat_scal
 from utils_constants import COMPLEXITY
 import numpy as np
@@ -136,6 +136,47 @@ def complex_dot():
         else:
             print_KO(f"{v1} dot {v2} == {res} != {expected}")
 
+def complex_euclidean_norm():
+    print_title(">>>>>>>>>> COMPLEX Euclidean norm <<<<<<<<<<")
+    tests = [
+        [0j],
+        [1j],
+        [0, 0],
+        [1, 0],
+        [2, 1 + 3j],
+        [4j, 2],
+        [-4, -2],
+    ]
+    for t in tests:
+        v1 = Vector(t)
+        res = v1.norm()
+        expected = np.linalg.norm(v1.coordinates)
+        if (res == expected):   
+            print_OK(f"{v1} norm == {res} == {expected}")
+        else:
+            print_KO(f"{v1} norm == {res} != {expected}")
+
+def complex_cos():
+    print_title(">>>>>>>>>> COMPLEX cosine <<<<<<<<<<")
+    tests = [
+        ([1, 0], [1, 0]),
+        ([8, 7], [3j, 2]),
+        # ([1, 1], [1j, 1]),
+        ([4, 2], [1, 1]),
+        ([-7, 3 + 2j], [6, 4]),
+    ]
+    for t in tests:
+        v1 = Vector(t[0])
+        v2 = Vector(t[1])
+        res = angle_cos(v1, v2)
+        u = np.array(v1.coordinates)
+        v = np.array(v2.coordinates)
+        expected = np.dot(u , v)/ np.linalg.norm(u) / np.linalg.norm(v)
+        if (res == expected):   
+            print_OK(f"{v1} and {v2} cosine == {res} == {expected}")
+        else:
+            print_KO(f"{v1} and {v2} cosine == {res} != {expected}")
+
 def main():
     try:
         complex_add()
@@ -144,9 +185,13 @@ def main():
         complex_lc()
         complex_lerp()
         complex_dot()
+        complex_euclidean_norm()
+        complex_cos()
 
     except ValueError as e:
         print(e)
+    except ZeroDivisionError as e:
+        print(f"{Colors.B_RED}Error: {Colors.RES}{e}")
 
 if (__name__ == "__main__"):
     main()
