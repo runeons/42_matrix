@@ -1,1 +1,17 @@
 __pycache__/
+bonus_projection.py
+ex00_basics.py
+ex01_linear_combination.py
+ex02_linear_interpolation.py
+ex03_dot_product.py
+ex04_norm.py
+ex05_cosine.py
+ex06_cross_product.py
+ex07_linear_transformation.py
+ex08_trace.py
+ex09_transpose.py
+ex10_reduced_row_echelon.py
+ex11_determinant.py
+ex12_inverse.py
+ex13_rank.py
+ex14_projection.py
