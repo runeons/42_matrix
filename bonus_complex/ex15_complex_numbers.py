@@ -195,6 +195,64 @@ def complex_cross():
         else:
             print_KO(f"cross_product {v1} and {v2} == {res} != {expected}")
 
+def complex_mat_vec_mult():
+    print_title(">>>>>>>>>> COMPLEX mat vec multiplication <<<<<<<<<<")
+    tests = [
+    ([[2 +3j, 0], [0, 2j]], [2, 1j]),
+    ]
+    for t in tests:
+        m1 = Matrix(t[0])
+        v1 = Vector(t[1])
+        res = m1.mul_vec(v1)
+        expected = np.matmul(m1.rows, v1.coordinates)
+        if (res == expected):   
+            print_OK(f"{m1} * {v1} == {res} == {expected}")
+        else:
+            print_KO(f"{m1} * {v1} == {res} != {expected}")
+            
+def complex_mat_mat_mult():
+    print_title(">>>>>>>>>> COMPLEX mat mat multiplication <<<<<<<<<<")
+    tests = [
+    ([[2, 0], [0, 2j]], [[2, 1 +3j], [3, 2]]),
+    ]
+    for t in tests:
+        m1 = Matrix(t[0])
+        m2 = Matrix(t[1])
+        res = m1.mul_mat(m2)
+        expected = np.matmul(m1.rows, m2.rows)
+        if (res == expected):   
+            print_OK(f"{m1} * {m2} == {res} == {expected}")
+        else:
+            print_KO(f"{m1} * {m2} == {res} != {expected}")
+
+def complex_trace():
+    print_title(">>>>>>>>>> COMPLEX trace <<<<<<<<<<")
+    tests = [
+        ([[8j, -7 + 1j], [4j, 2]]),
+    ]
+    for t in tests:
+        m1 = Matrix(t)
+        res = m1.trace()
+        expected = np.trace(m1.rows)
+        if (res == expected):   
+            print_OK(f"{m1} trace == {res} == {expected}")
+        else:
+            print_KO(f"{m1} trace == {res} != {expected}")
+
+def complex_transpose():
+    print_title(">>>>>>>>>> COMPLEX transpose <<<<<<<<<<")
+    tests = [
+        ([[1, 2 + 3j], [3j, 4]]),
+    ]
+    for t in tests:
+        m1 = Matrix(t)
+        res = m1.transpose()
+        expected = np.transpose(m1.rows)
+        if (res == expected):   
+            print_OK(f"{m1} transpose == {res} == {expected}")
+        else:
+            print_KO(f"{m1} transpose == {res} != {expected}")
+
 
 def main():
     try:
@@ -207,6 +265,10 @@ def main():
         complex_euclidean_norm()
         complex_cos()
         complex_cross()
+        complex_mat_vec_mult()
+        complex_mat_mat_mult()
+        complex_trace()
+        complex_transpose()
 
     except ValueError as e:
         print(e)
