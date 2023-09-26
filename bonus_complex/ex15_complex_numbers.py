@@ -2,7 +2,7 @@ from utils_colors import Colors
 from class_matrix import Matrix
 from class_vector import Vector
 from utils_display import print_title, print_OK, print_KO, space_complexity
-from utils_operations import reshape, linear_combination, lerp, angle_cos
+from utils_operations import reshape, linear_combination, lerp, angle_cos, cross_product
 from utils_complexity import time_complexity_vec_vec, time_complexity_mat_mat, time_complexity_vec_scal, time_complexity_mat_scal
 from utils_constants import COMPLEXITY
 import numpy as np
@@ -177,6 +177,25 @@ def complex_cos():
         else:
             print_KO(f"{v1} and {v2} cosine == {res} != {expected}")
 
+
+def complex_cross():
+    print_title(">>>>>>>>>> COMPLEX cross product <<<<<<<<<<")
+    tests = [
+        ([1, 0, 0], [0, 1 + 1j, 0]),
+        ([8j, 7, -4], [3, 2 + 2j, 1]),
+        ([1, 1, 1], [1, 1j, 1])
+    ]
+    for t in tests:
+        v1 = Vector(t[0])
+        v2 = Vector(t[1])
+        res = cross_product(v1, v2)
+        expected = np.cross(v1.coordinates, v2.coordinates)
+        if (res == expected):   
+            print_OK(f"cross_product {v1} and {v2} == {res} == {expected}")
+        else:
+            print_KO(f"cross_product {v1} and {v2} == {res} != {expected}")
+
+
 def main():
     try:
         complex_add()
@@ -187,6 +206,7 @@ def main():
         complex_dot()
         complex_euclidean_norm()
         complex_cos()
+        complex_cross()
 
     except ValueError as e:
         print(e)
