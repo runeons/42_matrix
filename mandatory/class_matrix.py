@@ -166,6 +166,7 @@ class Matrix:
         ref = Matrix([*self.rows])
         (nb_rows, nb_cols) = ref.shape()
         pivot_row = 0
+        sign = 1
         for pivot_col in range(nb_cols):
             max_val = 0
             k = 0
@@ -176,13 +177,15 @@ class Matrix:
             if ref.rows[k][pivot_col] == 0: 
                 continue;
             else:
-                ref.rows[k], ref.rows[pivot_row] = ref.rows[pivot_row], ref.rows[k]
+                if k != pivot_row:
+                    ref.rows[k], ref.rows[pivot_row] = ref.rows[pivot_row], ref.rows[k]
+                    sign *= -1
                 for i in range(pivot_row + 1, nb_rows): # each row UNDERNEATH will be simplified/normalised (pivot doesn't change, hence 'not so reduced')
                     ratio = ref.rows[i][pivot_col] / ref.rows[pivot_row][pivot_col]
                     for j in range(pivot_col, nb_cols): # each FURTHER value in the row will be simplified/normalised (pivot doesn't change, hence 'not so reduced')
                         ref.rows[i][j] -= ref.rows[pivot_row][j] * ratio
                 pivot_row += 1
-        return ref
+        return ref, sign
 
     @space_complexity
     def row_echelon(self): # wiki - pivots reduced to 1 (but not pure reduced - other numbers in pivot column)
@@ -216,11 +219,11 @@ class Matrix:
     def determinant(self):
         if not self.is_square():
             raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}Non squared matrix don't have determinant.")
-        ref = self.row_echelon_not_so_reduced()
+        ref, sign = self.row_echelon_not_so_reduced()
         det = 1
         for i in range(ref.shape()[0]):
             det *= ref.rows[i][i]
-        return det
+        return det * sign
 
     def _identity(self):
         if not self.is_square():
