@@ -5,7 +5,7 @@ from utils_complexity import time_complexity_mat_vec, time_complexity_mat_mul
 from utils_constants import COMPLEXITY
 
 def evaluation_mat_vec_mult():
-    print_title(">>>>>>>>>> EVALUATION linear transform <<<<<<<<<<")
+    print_title(">>>>>>>>>> EVALUATION multiplication <<<<<<<<<<")
     tests = [
       ([[0, 0], [0, 0]], [5, 7], [0, 0]),
       ([[1, 0], [0, 1]], [5, 7], [5, 7]),

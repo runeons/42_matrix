@@ -6,7 +6,7 @@ from utils_constants import COMPLEXITY
 # somme de la diagonale principale d’une matrice carrée
 
 def evaluation_trace():
-    print_title(">>>>>>>>>> EVALUATION linear transform <<<<<<<<<<")
+    print_title(">>>>>>>>>> EVALUATION trace <<<<<<<<<<")
     tests = [
         ([[0, 0], [0, 0]], 0),
         ([[1, 0], [0, 1]], 2),
