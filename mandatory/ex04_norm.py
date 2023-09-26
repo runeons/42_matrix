@@ -25,7 +25,7 @@ def evaluation_euclidean_norm():
 
 
 def evaluation_manhattan_norm():
-    print_title(">>>>>>>>>> EVALUATION Euclidean norm <<<<<<<<<<")
+    print_title(">>>>>>>>>> EVALUATION Manhattan norm <<<<<<<<<<")
     tests = [
         ([0], 0),
         ([1], 1),

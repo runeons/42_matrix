@@ -11,7 +11,7 @@ from utils_constants import COMPLEXITY
 # si plus de dimensions : entre les têtes de flèches
 
 def evaluation_lerp():
-    print_title(">>>>>>>>>> EVALUATION linear combination <<<<<<<<<<")
+    print_title(">>>>>>>>>> EVALUATION linear interpolation <<<<<<<<<<")
     tests = [
         ((0., 1., 0.), 0.),
         ((0., 1., 1.), 1.),
