@@ -1,6 +1,7 @@
 from utils_colors import Colors
 from class_vector import Vector
 from utils_display import space_complexity
+import numpy as np
 
 class LogicError(Exception):
     "Raised when we try to calculate the inverse of a matrix with a 0 determinant"
@@ -54,6 +55,11 @@ class Matrix:
                 return True
             else:
                 return False
+        elif isinstance(v, np.ndarray):
+            if (np.array_equal(self.rows, v)):
+                return True
+            else:
+                return False   
         else:
             raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}cannot compare Matrix with non-Matrix.")
         

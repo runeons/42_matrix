@@ -1,5 +1,6 @@
 from utils_colors import Colors
 from utils_display import space_complexity
+import numpy as np
 
 class Vector:
     def __init__ (self, *coordinates):
@@ -33,6 +34,11 @@ class Vector:
                 return True
             else:
                 return False
+        elif isinstance(v, np.ndarray):
+            if (np.array_equal(self.coordinates, v)):
+                return True
+            else:
+                return False            
         else:
             raise ValueError(f"{Colors.ERROR}Error: {Colors.RES}cannot compare Vector with non-Vector.")
         
