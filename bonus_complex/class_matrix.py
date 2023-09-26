@@ -2,7 +2,6 @@ from utils_colors import Colors
 from class_vector import Vector
 from utils_display import space_complexity
 import numpy as np
-import math
 
 class LogicError(Exception):
     "Raised when we try to calculate the inverse of a matrix with a 0 determinant"
@@ -153,7 +152,7 @@ class Matrix:
         if (isinstance(x, complex)):
             r2 = x.real * x.real
             i2 = x.imag * x.imag
-            res = math.sqrt(r2 + i2)
+            res = (r2 + i2) ** 0.5
             return res
         else:
             if x < 0:

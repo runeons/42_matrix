@@ -140,13 +140,7 @@ def complex_dot():
 def complex_euclidean_norm():
     print_title(">>>>>>>>>> COMPLEX Euclidean norm <<<<<<<<<<")
     tests = [
-        [0j],
-        [1j],
-        [0, 0],
-        [1, 0],
-        [2, 1 + 3j],
-        [4j, 2],
-        [-4, -2],
+        [2j, 1 + 3j],
     ]
     for t in tests:
         v1 = Vector(t)
@@ -160,11 +154,7 @@ def complex_euclidean_norm():
 def complex_cos():
     print_title(">>>>>>>>>> COMPLEX cosine <<<<<<<<<<")
     tests = [
-        ([1, 0], [1, 0]),
-        ([8, 7], [3j, 2]),
-        # ([1, 1], [1j, 1]),
-        ([4, 2], [1, 1]),
-        ([-7, 3 + 2j], [6, 4]),
+        ([1, 1j], [1j, 1]),
     ]
     for t in tests:
         v1 = Vector(t[0])

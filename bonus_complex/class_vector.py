@@ -119,8 +119,10 @@ class Vector:
     @space_complexity
     def norm(self):
         norm = 0.
-        for i in self.coordinates:
-            norm += pow(i, 2)
+        for c in self.coordinates:
+            r2 = c.real * c.real
+            i2 = c.imag * c.imag
+            norm += r2 + i2
         return norm ** 0.5
 
     @space_complexity
