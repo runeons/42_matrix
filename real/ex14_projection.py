@@ -6,7 +6,7 @@ def main():
         print_title(">>>>>>>>>> PROJECTION  <<<<<<<<<<")
         P = projection(90, 16/9, 1, 10) # fov, ratio, near, far
         # P = projection(160, 16/9, 1, 10) # fov, ratio, near, far
-        # P = projection(90, 16/9, 1, 1000000) # fov, ratio, near, far
+        # P = projection(90, 16/9, 1, 1.5) # fov, ratio, near, far
         # P = projection(90, 16/9, 10, 100) # fov, ratio, near, far
         P.summary()
         to_file(P)

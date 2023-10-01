@@ -11,9 +11,7 @@ from sympy import Matrix as sym_matrix
 def complex_add():
     print_title(">>>>>>>>>> COMPLEX add <<<<<<<<<<")
     v_tests = [
-        ([5, 3], [4, 2j]),
-        ([5, 3, 2], [4, 2, 1]),
-        ([3, 1j], [-1, 2j]),
+        ([5 + 2j, 3], [4, 2j]),
     ]
     for t in v_tests:
         v1 = Vector(t[0])
@@ -26,7 +24,7 @@ def complex_add():
             print_KO(f"{v1} + {v2} == {res} != {expected}")
 
     m_tests = [
-        ([[1j, 2], [3, 4]], [[2, 3j], [4, 5]]),
+        ([[1j, 2], [3, 4 + 3j]], [[2, 3j], [4, 5]]),
     ]
     for t in m_tests:
         m1 = Matrix(t[0])
@@ -41,7 +39,7 @@ def complex_add():
 def complex_sub():
     print_title(">>>>>>>>>> COMPLEX sub <<<<<<<<<<")
     v_tests = [
-        ([-5, 6], [-8, 0]),
+        ([-5, 6j], [-8j, 0]),
     ]
     for t in v_tests:
         v1 = Vector(t[0])
@@ -54,7 +52,7 @@ def complex_sub():
             print_KO(f"{v1} - {v2} == {res} != {expected}")
 
     m_tests = [
-        ([[1, 2], [3, 4]], [[2, 3], [4, 5]]),
+        ([[1, 2], [3 + 1j, 4]], [[2j, 3], [4, 5]]),
     ]
     for t in m_tests:
         m1 = Matrix(t[0])
